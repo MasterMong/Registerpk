@@ -7,7 +7,6 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] != true) {
     exit();
 }
 
-// ตรวจสอบว่ามีการส่งฟอร์มมาหรือไม่
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ตรวจสอบว่าค่า 'plan' ถูกต้อง
     $valid_plans = array("วิทยาศาสตร์ – คณิตศาสตร์", "ภาษาอังกฤษ – คณิตศาสตร์", "การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL");
@@ -19,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sci = $_SESSION['sci'];
         $zero = ($_SESSION['zero'] == 1) ? 'มี' : 'ไม่มี';
 
-        // ตรวจสอบว่าข้อมูลนี้ได้ถูกบันทึกไว้แล้วหรือไม่
+        
         $check_sql = "SELECT * FROM students WHERE name = '$name'";
         $check_result = $conn->query($check_sql);
 
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                            WHERE name = '$name'";
             
             if ($conn->query($update_sql) === TRUE) {
-                // อัพเดทข้อมูลใน Session ด้วยค่าที่ได้จากฟอร์ม
+                
                 $_SESSION['plan'] = $plan;
                 echo "";
                 header("Location: ../../info.php"); 
