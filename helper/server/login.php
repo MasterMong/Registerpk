@@ -11,13 +11,15 @@ if($result->num_rows > 0) {
     $_SESSION['username'] = $data->username;
     $_SESSION['password'] = $data->password;
     $_SESSION['room'] = $data->room;
-    $_SESSION['average_grade'] = $data->grade;
-    $_SESSION['grade_math'] = $data->math;
-    $_SESSION['grade_science'] = $data->sci;
-    $_SESSION['zero_status'] = $data->zero;
+    $_SESSION['grade'] = $data->grade;
+    $_SESSION['math'] = $data->math;
+    $_SESSION['sci'] = $data->sci;
+    $_SESSION['zero'] = $data->zero;
     $_SESSION['name'] = $data->name;
+    $_SESSION['plan'] = $data->plan;
     session_write_close();
     header("Location: ../../account.php");
 } else {
-    echo "login not pass";
+    header("Location: ../../regis.php");
+    $_SESSION['error'] = '<div class="text-center pt-2 pb-3 text-danger">รหัสนักเรียน หรือรหัสประชาชนไม่ถูกต้อง </div>';
 }

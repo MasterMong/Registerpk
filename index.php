@@ -17,7 +17,7 @@
             <img src="helper/media/pklogo.png" data-aos="zoom-in-up" data-aos="100" style="max-width: 150px;margin: 10px;">
             <h1 data-aos="zoom-in-up" data-aos-delay="150">ระบบรับสมัครนักเรียนรอบโควตา</h1>
             <p data-aos="zoom-in-up" data-aos-delay="200">สำหรับนักเรียนชั้นมัธยมศึกษาปีที่ 3 โรงเรียนภูเขียว</p>
-            <p data-aos="zoom-in-up" data-aos-delay="250">ประจำปีการศึกษา 2566 ระหว่างวันที่ 13 - 17 กุมภาพันธ์ 2566</p>
+            <p data-aos="zoom-in-up" data-aos-delay="250">ประจำปีการศึกษา 2567 ระหว่างวันที่ 13 - 17 กุมภาพันธ์ 2566</p>
             <div data-aos="fade-up" data-aos-duration="1000">
                 <a style="margin: 5px 2.5px; background-color: #56cc9d;" class="btn btn-success animated-button" role="button" href="regis.php"><i class="far fa-edit"></i>&nbsp;สมัครเลย</a>
                 <a style="margin: 5px 2.5px; background-color: #ffce67;" class="btn btn-warning animated-button" role="button" href="students.php"><i class="bi bi-person-badge"></i>&nbsp;รายชื่อผู้สมัคร</a>

@@ -1,4 +1,14 @@
+<?php 
+require('helper/server/db.php');
+$error = '';
+if(!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+    echo(""); 
+    
+} else {
+    header("Location: account.php"); 
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,16 +39,19 @@
 
                     <fieldset>
                         <legend class="fs-5 my-2">เลขประจำตัวประชาชน</legend>
-                        <input class="form-control" type="password" name="password" style="border: 1px solid rgba(0, 0, 0, 0.2); color: rgb(0,0,0); border-radius: 15px; box-shadow: 3px 3px rgba(242,107,138,0.45);" placeholder="เลขประจำตัวประชาชน" required="">
+                        <input class="form-control" type="text" name="password" style="border: 1px solid rgba(0, 0, 0, 0.2); color: rgb(0,0,0); border-radius: 15px; box-shadow: 3px 3px rgba(242,107,138,0.45);" placeholder="เลขประจำตัวประชาชน" required="">
                     </fieldset>
                 </div>
                 <div class="text-end d-flex justify-content-end my-3">
                     <button class="btn btn-success animated-button" style="background-color: #56cc9d; margin: 5px 5px" type="submit" role="button" name="login"><i class="far fa-check-circle"></i>&nbsp;ตกลง</button>
                     <button class="btn btn-warning animated-button" style="background-color: #ffce67; margin: 5px 5px" type="reset"><i class="far fa-times-circle"></i>&nbsp;ยกเลิก</button>
                 </div>
-                <?php if (isset($_SESSION['error'])) : ?>
-                    <div class="text-center text-danger my-3"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-                <?php endif ?>
+                <?php 
+                if (isset($_SESSION['error'])) {
+                    echo $_SESSION['error'];
+                    unset($_SESSION['error']);
+                }
+                ?>
             </form>
             </div>
         </div>
