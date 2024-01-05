@@ -15,8 +15,10 @@ if($result->num_rows > 0) {
     $_SESSION['math'] = $data->math;
     $_SESSION['sci'] = $data->sci;
     $_SESSION['zero'] = $data->zero;
+    $_SESSION['point'] = $data->point;
     $_SESSION['name'] = $data->name;
     $_SESSION['plan'] = $data->plan;
+    
     session_write_close();
     header("Location: ../../account.php");
 } else {

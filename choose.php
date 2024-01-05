@@ -28,15 +28,16 @@ require('helper/server/checkplan.php')
             <?php
                 if (isset($_SESSION['username'])) {
                 ?>
-                    
                     <?php
                     if ($_SESSION['zero'] == 1) {
                         ?>
-                        <div><span><?php echo $_SESSION['name'];?></span><span> เกรดเฉลี่ย : </span>5 เทอม <span class="text-danger"><?php echo $_SESSION['grade'];?></span>, คณิต <span class="text-danger"><?php echo $_SESSION['math'];?></span>, วิทย์ <span class="text-danger"><?php echo $_SESSION['sci'];?></span>, <span>ติด 0 ร มส มผ : </span> <span class="badge bg-danger">มี</span></div>
+                        <div><span><?php echo $_SESSION['name'];?></span><span> เกรดเฉลี่ย : </span>5 เทอม <span class="text-danger"><?php echo $_SESSION['grade'];?></span>, คณิต <span class="text-danger"><?php echo $_SESSION['math'];?></span>, วิทย์ <span class="text-danger"><?php echo $_SESSION['sci'];?></span>, <span>ติด 0 ร มส มผ : </span> <span class="badge bg-danger">มี</span><span class="text-end"><span class="text-end">คะแนนความประพฤติ : </span><?php echo $_SESSION['point'];?> คะแนน</span></div>
+                        <div class="text-end"><span>คะแนนความประพฤติ : </span><?php echo $_SESSION['point'];?>คะแนน</div>
                         <?php
                     } else {
                         ?>
-                        <div><span><?php echo $_SESSION['name'];?></span><span> เกรดเฉลี่ย : </span>5 เทอม <span class="text-danger"><?php echo $_SESSION['grade'];?></span>, คณิต <span class="text-danger"><?php echo $_SESSION['math'];?></span>, วิทย์ <span class="text-danger"><?php echo $_SESSION['sci'];?></span>, <span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span></div>
+                        <div><span><?php echo $_SESSION['name'];?></span><span> เกรดเฉลี่ย : </span>5 เทอม <span class="text-danger"><?php echo $_SESSION['grade'];?></span>, คณิต <span class="text-danger"><?php echo $_SESSION['math'];?></span>, วิทย์ <span class="text-danger"><?php echo $_SESSION['sci'];?></span>, <span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span><span class="text-end"><span class="text-end">คะแนนความประพฤติ : </span><?php echo $_SESSION['point'];?> คะแนน</span></div>
+                        
                         <?php
                     }
                     ?>

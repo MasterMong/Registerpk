@@ -42,6 +42,7 @@ require('helper/server/checkplan.php')
                         <?php
                     }
                     ?>
+                    <div><span>คะแนนความประพฤติ : </span><?php echo $_SESSION['point'];?>คะแนน</div>
                     <hr>
                 <?php
                 } else {
