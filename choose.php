@@ -77,7 +77,7 @@ require('helper/server/checkplan.php');
                                                 <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-primary animated-button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="confirmRegistration('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        <button class="btn btn-primary animated-button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์" type="submit" onclick="confirmRegistration('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
                                     </div>
                                 <?php else : ?>
                                     <div class="card-body">
@@ -115,7 +115,7 @@ require('helper/server/checkplan.php');
                                                 <li style="height: 96px;">GPAX ตั้งแต่ 2.75</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-primary animated-button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="confirmRegistration('ภาษาอังกฤษ – คณิตศาสตร์')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        <button class="btn btn-primary animated-button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" type="submit" onclick="confirmRegistration('ภาษาอังกฤษ – คณิตศาสตร์')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
                                     </div>
                                 <?php else : ?>
                                     <div class="card-body">
@@ -150,7 +150,7 @@ require('helper/server/checkplan.php');
                                                 <li style="height: 96px;">ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-primary animated-button" name="plan" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="confirmRegistration('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL')" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" type="submit"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        <button class="btn btn-primary animated-button" name="plan" type="submit" onclick="confirmRegistration('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL')" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" type="submit"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
                                     </div>
                                 <?php else : ?>
                                     <div class="card-body">
@@ -170,32 +170,9 @@ require('helper/server/checkplan.php');
                     </div>
                 </div>
             </form>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation Code</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="confirmationForm">
-                            <div class="mb-3">
-                                <label for="confirmationCode" class="form-label">Enter the confirmation code:</label>
-                                <input type="text" class="form-control" id="inputcode" placeholder="Confirmation Code" required>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="confirmRegistration('{{plan}}')">Confirm Registration</button>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </main>
-    <script src="helper/confirm.js"></script>
-
     <?php require 'helper/source/footer.php' ?>
     <?php require 'helper/source/script.php' ?>
 </body>
