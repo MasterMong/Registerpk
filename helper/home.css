@@ -86,8 +86,8 @@ opacity: 30%;
     text-align: center;
     align-items: center;
     transform: translateY(-50%);
-    left: 190px;
-    top: -135px;
+    left: 20px;
+    top: 0;
     
     .shape {
     display: inline-block;
@@ -166,8 +166,8 @@ opacity: 30%;
     }
     
     &.second {
-    left: 485px;
-    top: 155px;
+    left: 350px;
+    top: 20px;
     .shape {
         &.triangle, &.circle, &.circle.big, &.disc {
         animation-delay: 1.9s;

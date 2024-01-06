@@ -1,6 +1,5 @@
 <?php 
 require('helper/server/db.php');
-$error = '';
 if(!isset($_SESSION['username']) || $_SESSION['username'] != true) {
     echo(""); 
     

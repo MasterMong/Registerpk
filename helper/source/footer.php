@@ -1,4 +1,4 @@
-<footer style="border-top: 2px solid var(--bs-pink);background: #fff5f5;">
+<footer style="border-top: 2px solid var(--bs-pink);background: #fff5f5;" class="mt-3">
         <div class="container my-3">
             <div class="row">
                 <div class="d-flex justify-content-center align-items-center col-lg-4 my-3">
