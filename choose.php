@@ -4,7 +4,15 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] != true) {
     header("Location: regis.php"); 
     exit();
 }
-require('helper/server/checkplan.php')
+
+if (isset($_SESSION['user_agreed']) && $_SESSION['user_agreed'] === true) {
+} else {
+    header('location: account.php');
+}
+
+require('helper/server/checkplan.php');
+
+
 
 ?>
 <!DOCTYPE html>
@@ -31,13 +39,15 @@ require('helper/server/checkplan.php')
                     <?php
                     if ($_SESSION['zero'] == 1) {
                         ?>
-                        <div><span><?php echo $_SESSION['name'];?></span><span> เกรดเฉลี่ย : </span>5 เทอม <span class="text-danger"><?php echo $_SESSION['grade'];?></span>, คณิต <span class="text-danger"><?php echo $_SESSION['math'];?></span>, วิทย์ <span class="text-danger"><?php echo $_SESSION['sci'];?></span>, <span>ติด 0 ร มส มผ : </span> <span class="badge bg-danger">มี</span><span class="text-end"></div>
-                        <span class="text-end">คะแนนความประพฤติ : </span><?php echo $_SESSION['point'];?> คะแนน</span>
+                        <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point'];?> คะแนน</span></div>
+                        <div><span><?php echo $_SESSION['name'];?></span><span> เกรดเฉลี่ย : </span><span class="text-danger badge bg-secondary">5 เทอม <?php echo $_SESSION['grade'];?></span> , <span class="text-danger badge bg-secondary">คณิต <?php echo $_SESSION['math'];?></span> , <span class="text-danger badge bg-secondary badge bg-secondary">วิทย์ <?php echo $_SESSION['sci'];?></span></div>
+                        <span>ติด 0 ร มส มผ : </span> <span class="badge bg-danger">มี</span><span class="text-end">
                         <?php
                     } else {
                         ?>
-                        <div><span><?php echo $_SESSION['name'];?></span><span> เกรดเฉลี่ย : </span>5 เทอม <span class="text-danger"><?php echo $_SESSION['grade'];?></span>, คณิต <span class="text-danger"><?php echo $_SESSION['math'];?></span>, วิทย์ <span class="text-danger"><?php echo $_SESSION['sci'];?></span>, <span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span><span class="text-end"></div>
-                        <div><span class="text-end">คะแนนความประพฤติ : </span><?php echo $_SESSION['point'];?> คะแนน</span></div>
+                        <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point'];?> คะแนน</span></div>
+                        <div><span><?php echo $_SESSION['name'];?></span><span> เกรดเฉลี่ย : </span><span class="text-danger badge bg-secondary">5 เทอม <?php echo $_SESSION['grade'];?></span> , <span class="text-danger badge bg-secondary">คณิต <?php echo $_SESSION['math'];?></span> , <span class="text-danger badge bg-secondary badge bg-secondary">วิทย์ <?php echo $_SESSION['sci'];?></span></div>
+                        <span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span><span class="text-end">
                         
                         <?php
                     }
@@ -52,9 +62,9 @@ require('helper/server/checkplan.php')
         </div>
         <form method="post" action="helper/server/success.php">
             <h6 class="mb-3"><span>กรุณา<strong>เลือกแผนการเรียน</strong>ที่ต้องการสมัคร</span></h6>
-            <div class="card-deck mb-3">
-                <div class="row">
-                    <div class="card col-lg-4 mb-3">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-5">
                         <div>
                             <img class="card-img-top" src="helper/plan/sci.gif">
                         </div>
@@ -70,47 +80,66 @@ require('helper/server/checkplan.php')
                                     <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li> 
                                 </ul>
                             </div>
-                            <button class="btn btn-primary animated-button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์" type="submit"><i class="far fa-edit"></i>&nbsp;สมัคร</button></form>
-                        </div>
-                    </div>
-                    <div class="card col-lg-4 mb-3">
-                        <div>
-                            <img class="card-img-top" src="helper/plan/eng.gif">
-                        </div>
-                        <div class="card-body ">
-                            <h6 class="card-title">ภาษาอังกฤษ – คณิตศาสตร์</h6>
-                            <hr>
-                            <div>
-                                <p>คุณสมบัติ</p>
-                                <ul>
-                                    <li>GPAX ตั้งแต่ 2.75</li> 
-                                </ul>
-                            </div>
-                            <button class="btn btn-primary animated-button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" type="submit"><i class="far fa-edit"></i>&nbsp;สมัคร</button></form>
-                        </div>
-                    </div>
-                    <div class="card col-lg-4 mb-3">
-                        <div>
-                            <img class="card-img-top" src="helper/plan/mou.gif">
-                        </div>
-                        <div class="card-body">
-                            <h6 class="card-title">การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL</h6>
-                            <hr>
-                            <div>
-                                <p>คุณสมบัติ</p>
-                                <ul>
-                                    <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
-                                </ul>
-                            </div>
-                            <button class="btn btn-primary animated-button" name="plan" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" type="submit"><i class="far fa-edit"></i>&nbsp;สมัคร</button></form>
+                            <button class="btn btn-primary animated-button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์" type="submit"onclick="confirmRegistration('ภาษาอังกฤษ – คณิตศาสตร์') "><i class="far fa-edit"></i>&nbsp;สมัคร</button></form>
                         </div>
                     </div>
                 </div>
-            </div>
+                    <div class="col-lg-4">
+                        <div class="card2 mb-5">
+                            <div>
+                                <img class="card-img-top" src="helper/plan/eng.gif">
+                            </div>
+                            <div class="card-body ">
+                                <h6 class="card-title">ภาษาอังกฤษ – คณิตศาสตร์</h6>
+                                <hr>
+                                <div>
+                                    <p>คุณสมบัติ</p>
+                                    <ul style="width:451.2px; height: 96px;">
+                                        <li>GPAX ตั้งแต่ 2.75</li> 
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary animated-button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" type="submit" onclick="confirmRegistration('ภาษาอังกฤษ – คณิตศาสตร์') "type="submit"><i class="far fa-edit"></i>&nbsp;สมัคร</button></form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card3 mb-5">
+                            <div>
+                                <img class="card-img-top" src="helper/plan/mou.gif">
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title">การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL</h6>
+                                <hr>
+                                <div>
+                                    <p>คุณสมบัติ</p>
+                                    <ul style="width:451.2px; height: 96px;">
+                                        <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary animated-button" name="plan" type="submit" onclick="confirmRegistration('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL') " value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" type="submit"><i class="far fa-edit"></i>&nbsp;สมัคร</button></form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
         </form>
     </div>
     </main>
+    <script>
+    function confirmRegistration(plan) {
+    var confirmationCode = prompt("กรุณาพิมพ์เลข เพื่อยืนยันการสมัครแผนการเรียน '" + plan + "':");
 
+    if (confirmationCode !== null && confirmationCode.trim() !== "1234") { 
+        alert("คุณใส่รหัสยืนยันพิมพ์โปรดลองใหม่อีกครั้ง");
+    } else {
+    }
+    if (confirmationCode !== null && confirmationCode.trim() === "1234") { 
+        document.getElementById("registrationForm").submit();
+    } else {
+        event.preventDefault();
+    }
+}
+    </script>
     <?php require 'helper/source/footer.php' ?>
     <?php require 'helper/source/script.php' ?>
 </body>

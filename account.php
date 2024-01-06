@@ -4,7 +4,11 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] != true) {
     header("Location: regis.php"); 
     exit();
 }
-require('helper/server/checkplan.php')
+if (isset($_SESSION['user_agreed']) && $_SESSION['user_agreed'] === true) {
+    header('location: choose.php');
+    
+} 
+require('helper/server/checkplan.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,23 +31,24 @@ require('helper/server/checkplan.php')
             <?php
                 if (isset($_SESSION['username'])) {
             ?>
-                    <div><span>ชื่อ - สกุล : </span><span><?php echo $_SESSION['name'];?></span></div>    
-                    <div><span>ห้อง : 3/</span><?php echo $_SESSION['room'];?></div>
-                    <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['username'];?></div>
-                    <div><span>เกรดเฉลี่ย : </span>5 เทอม <span class="text-danger"><?php echo $_SESSION['grade'];?></span>, คณิต <span class="text-danger"><?php echo $_SESSION['math'];?></span>, วิทย์ <span class="text-danger"><?php echo $_SESSION['sci'];?></span></div>
+                <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['username'];?></div>
+                <div><span>ชื่อ - สกุล : </span><span><?php echo $_SESSION['name'];?></span><span> ห้อง : 3/</span><?php echo $_SESSION['room'];?></div>    
+                <div></div>
+                
+                <div><span>เกรดเฉลี่ย : </span><span class="text-danger badge bg-secondary">5 เทอม <?php echo $_SESSION['grade'];?></span> , <span class="text-danger badge bg-secondary">คณิต <?php echo $_SESSION['math'];?></span> , <span class="text-danger badge bg-secondary">วิทย์ <?php echo $_SESSION['sci'];?></span></div>
+                <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point'];?> คะแนน</span></div>
+                <?php
+                if ($_SESSION['zero'] == 1) {
+                ?>
+                    <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-danger">มี</span></div>
                     <?php
-                    if ($_SESSION['zero'] == 1) {
+                } else {
                     ?>
-                        <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-danger">มี</span></div>
-                        <?php
-                    } else {
-                        ?>
-                        <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span></div>
-                        <?php
-                    }
-                    ?>
-                    <div><span>คะแนนความประพฤติ : </span><?php echo $_SESSION['point'];?> คะแนน</div>
-                    <hr>
+                    <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span></div>
+                    <?php
+                }
+            ?>
+                <hr>
                 <?php
                 } else {
                     
@@ -66,10 +71,16 @@ require('helper/server/checkplan.php')
                 <li>นักเรียน<strong><span style="color: rgb(255, 0, 0);">สามารถสมัครได้เพียง 1 แผนการเรียน</span></strong></li>
                 <li>หากต้องการเปลี่ยนแปลงแผนการเรียนที่สมัครนักเรียนจะต้องส่งแบบฟอร์ม <a href="https://drive.google.com/file/d/17p5Unp99m6RwB53ny6BSSKGPxJb9n6fU/view?usp=sharing" target="_blank">นร.01.1</a> ที่ห้องวิชาการ โรงเรียนภูเขียว</li>
             </ul>
-            <form method="post" action="choose.php">
-                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1" name="agree" required=""><label class="form-check-label" for="formCheck-1">ข้าพเจ้ารับทราบข้อกำหนดและเงื่อนไขการสมัครเรียนรอบโควตาโรงเรียนภูเขียวดังที่ปรากฏด้านบนเรียนร้อยแล้ว</label></div>
-                <div class="text-center" style="margin: 10px;"><button class="btn btn-primary animated-button" type="submit"><i class="far fa-edit"></i>&nbsp;สมัครเลย</button></div>
+            <form method="post" action="helper/server/checkagree.php">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="formCheck-1" name="check" required="">
+                    <label class="form-check-label" for="formCheck-1">ข้าพเจ้ารับทราบข้อกำหนดและเงื่อนไขการสมัครเรียนรอบโควตาโรงเรียนภูเขียวดังที่ปรากฏด้านบนเรียนร้อยแล้ว</label>
+                </div>
+                <div class="text-center" style="margin: 10px;">
+                    <button class="btn btn-primary animated-button" type="submit" value="agree"><i class="far fa-edit"></i>&nbsp;สมัครเลย</button>
+                </div>
             </form>
+            
         </div>
     </div>
 

@@ -1,24 +1,19 @@
 <?php
 require('db.php');
-$plan = $_POST['plan'];
 
-if(!isset($_SESSION['username']) || $_SESSION['username'] != true) {
-    header("Location: regis.php"); 
+session_start();
+
+if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+    header("Location: ../../regis.php");
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // ตรวจสอบว่าค่า 'plan' ถูกต้อง
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['plan'])) {
     $valid_plans = array("วิทยาศาสตร์ – คณิตศาสตร์", "ภาษาอังกฤษ – คณิตศาสตร์", "การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL");
-    if (isset($_POST['plan']) && in_array($_POST['plan'], $valid_plans)) {
+    if (in_array($_POST['plan'], $valid_plans)) {
         $plan = $_POST['plan'];
         $name = $_SESSION['name'];
-        $grade = $_SESSION['grade'];
-        $math = $_SESSION['math'];
-        $sci = $_SESSION['sci'];
-        $zero = ($_SESSION['zero'] == 1) ? 'มี' : 'ไม่มี';
 
-        
         $check_sql = "SELECT * FROM students WHERE name = '$name'";
         $check_result = $conn->query($check_sql);
 
@@ -28,18 +23,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                            WHERE name = '$name'";
             
             if ($conn->query($update_sql) === TRUE) {
-                
                 $_SESSION['plan'] = $plan;
-                echo "";
-                header("Location: ../../info.php"); 
+                header("Location: ../../info.php");
+                exit();
             } else {
-                echo "ผิดพลาดในการอัพเดทข้อมูล: " . $conn->error;
+                
             }
         } else {
             
         }
     } else {
-        echo "";
+        
+        exit();
     }
+} else {
+    header("Location: ../../regis.php");
+    exit();
 }
 ?>

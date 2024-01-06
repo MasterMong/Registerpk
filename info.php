@@ -16,7 +16,7 @@ if ($check_plan_result->num_rows > 0) {
 
     switch ($plan) {
         case 'วิทยาศาสตร์ – คณิตศาสตร์':
-            $img_src = 'helper/plan/sci.gif';
+            $img_src = '<img class="card-img-top info" src="helper/plan/sci.gif">';
             $detail_plan = '
                 <li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
                 <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
@@ -26,12 +26,12 @@ if ($check_plan_result->num_rows > 0) {
             break;
 
         case 'ภาษาอังกฤษ – คณิตศาสตร์':
-            $img_src = 'helper/plan/eng.gif';
+            $img_src = '<img class="card-img-top info2" src="helper/plan/eng.gif">';
             $detail_plan = '<li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>';
             break;
 
         case 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL':
-            $img_src = 'helper/plan/mou.gif';
+            $img_src = '<img class="card-img-top info3" src="helper/plan/mou.gif">';
             $detail_plan = '<li>ผลการเรียน ติด 0 ร มส มผ <span class="badge bg-success">ไม่มี</span> </li>' ;
             break;
 
@@ -68,10 +68,10 @@ if ($check_plan_result->num_rows > 0) {
                 <?php
                 if (isset($_SESSION['username'])) {
                 ?>
-                    <div><span>ชื่อ - สกุล : </span><span><?php echo $_SESSION['name'];?></span></div>   
-                    <div><span>ห้อง : 3/</span><?php echo $_SESSION['room'];?></div>
                     <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['username'];?></div>
-                    <div><span>เกรดเฉลี่ย : </span>5 เทอม <span class="text-danger"><?php echo $_SESSION['grade'];?></span>, คณิต <span class="text-danger"><?php echo $_SESSION['math'];?></span>, วิทย์ <span class="text-danger"><?php echo $_SESSION['sci'];?></span></div>
+                    <div><span>ชื่อ - สกุล : </span><span><?php echo $_SESSION['name'];?></span><span> ห้อง : 3/</span><?php echo $_SESSION['room'];?></div>   
+                    <div><span>เกรดเฉลี่ย : </span><span class="text-danger badge bg-secondary">5 เทอม <?php echo $_SESSION['grade'];?></span> , <span class="text-danger badge bg-secondary">คณิต <?php echo $_SESSION['math'];?></span> , <span class="text-danger badge bg-secondary badge bg-secondary">วิทย์ <?php echo $_SESSION['sci'];?></span></div>
+                    <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point'];?> คะแนน</span></div>
                     <?php
                     if ($_SESSION['zero'] == 1) {
                     ?>
@@ -83,7 +83,7 @@ if ($check_plan_result->num_rows > 0) {
                         <?php
                     }
                     ?>
-                    <hr>
+                    
                 <?php
                 } else {
                     
@@ -95,7 +95,7 @@ if ($check_plan_result->num_rows > 0) {
                 <h4>แผนการเรียนที่สมัคร</h4>
                 <div class="row">
                 <div class="col-md-5">
-                <?php echo "<img src='$img_src' alt='' width='100%'>"; ?>
+                <?php echo $img_src; ?>
             </div>
             <div class="col-md-7">
                 <p style="margin: 0;">แผนการเรียน<?php echo $plan; ?> </p>

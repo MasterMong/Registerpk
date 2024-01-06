@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    position: relative;
+    font-family: 'Prompt', sans-serif;
     
+}   
+
 .animated-button {
     transition: transform 0.5s;
-    color: black; 
+    color: #fff; 
     border: 2px solid #000000; 
     padding: 10px 20px; 
     border-radius: 5px; 
     font-size: 16px; 
     cursor: pointer;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .animated-button:hover {
@@ -20,11 +26,10 @@
 
 .btn-primary {
     background-color: #56cc9d;
-    color: #000;
     
 }
 .btn-primary:hover {
-    background-color: #41b587;
+    background-color: #56cc9d;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -106,8 +111,31 @@ ul li a:hover {
 .card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-sizing: border-box;
-    box-shadow: 5px 5px #ffbddb;
-    min-height: 200px; 
+    box-shadow: 0px 0px 44px -20px #ff508d;
+    -webkit-box-shadow: 0px 0px 44px -20px #ff508d;
+    -moz-box-shadow: 0px 1px 44px -20px #ff508d;
+    border: 5px #ffd5e8 solid;
+    min-height: 200px;  
+    border-radius: 40px;
+}
+.card2 {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 44px -20px #50cbff;
+    -webkit-box-shadow: 0px 0px 44px -20px #50cbff;
+    -moz-box-shadow: 0px 1px 44px -20px #50cbff;
+    border: 5px #b4e8ff solid;
+    min-height: 200px;  
+    border-radius: 40px;
+}
+.card3 {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 44px -20px #51e290;
+    -webkit-box-shadow: 0px 0px 44px -20px #51e290;
+    -moz-box-shadow: 0px 1px 44px -20px #51e290;
+    border: 5px #bdffda solid;
+    min-height: 200px;  
     border-radius: 40px;
 }
 
@@ -115,11 +143,56 @@ ul li a:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
+.card2:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.card3:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.info {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 44px -20px #ff508d;
+    -webkit-box-shadow: 0px 0px 44px -20px #ff508d;
+    -moz-box-shadow: 0px 1px 44px -20px #ff508d;
+    border: 5px #ffd5e8 solid;
+    min-height: 200px;  
+    border-radius: 40px;
+}
+.info2 {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 44px -20px #50cbff;
+    -webkit-box-shadow: 0px 0px 44px -20px #50cbff;
+    -moz-box-shadow: 0px 1px 44px -20px #50cbff;
+    border: 5px #b4e8ff solid;
+    min-height: 200px;  
+    border-radius: 40px;
+}
+.info3 {
+    box-sizing: border-box;
+    box-shadow: 0px 0px 44px -20px #51e290;
+    -webkit-box-shadow: 0px 0px 44px -20px #51e290;
+    -moz-box-shadow: 0px 1px 44px -20px #51e290;
+    border: 5px #bdffda solid;
+    min-height: 200px;  
+    border-radius: 40px;
+}
 
 .card-img-top {
     border-radius: 40px; 
-    object-fit: contain;
-    height: 300px; 
+    object-fit: cover;
+    height: 240px; 
 }
 
+a {
+    color: #f26b8a;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+a:hover {
+    color: #ff3d81;
+}
 

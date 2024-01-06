@@ -11,9 +11,9 @@
                 <div class="col-lg-4">
                     <h5 class="fw-semibold">ทีมพัฒนา</h5>
                     <ul class="development-team">
-                        <li>นายภาคภูมิ ทีดินดำ ม.3/3 - Frontend/Backend</li>
-                        <li>นางสาวแทมมารีน ตาปราบ ม.3/3 - Frontend/Backend</li>
-                        <li>นายมงคล ชนะดี - ที่ปรึกษา, UI/UX</li>
+                        <li>นายภาคภูมิ ทีดินดำ ม.3/3 <br> Frontend/Backend UI/UX</li>
+                        <li>นางสาวแทมมารีน ตาปราบ ม.3/3 <br> Frontend/Backend</li>
+                        <li>นายมงคล ชนะดี - ที่ปรึกษา</li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
