@@ -1,13 +1,24 @@
-<?php require 'helper/server/db.php'; 
-    $selectedRoom = isset($_GET['room']) ? $_GET['room'] : '';
-    $roomPrefix = ($selectedRoom !== '') ? "ห้อง $selectedRoom" : "ทุกห้อง";
+<?php 
+require 'helper/server/db.php'; 
 
-    $sql = "SELECT * FROM students";
-    if (!empty($selectedRoom) && $selectedRoom !== 'all') {
-        $sql .= " WHERE room = '$selectedRoom'";
-    }
+$selectedRoom = isset($_GET['room']) ? $_GET['room'] : '';
+$roomPrefix = ($selectedRoom !== '') ? "ห้อง $selectedRoom" : "ทุกห้อง";
+
+$sql = "SELECT * FROM students";
+if (!empty($selectedRoom) && $selectedRoom !== 'all') {
+    $sql .= " WHERE room = ?";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $selectedRoom);
+    $stmt->execute();
+    
+    $result = $stmt->get_result();
+    $stmt->close();
+} else {
     $result = $conn->query($sql);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
