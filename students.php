@@ -17,7 +17,7 @@
     <title>รายชื่อผู้สมัคร | โรงเรียนภูเขียว</title>
     <link rel="stylesheet" href="helper/bootstrap/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/5134196601.js" crossorigin="anonymous"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="helper/style.css">
 </head>
@@ -25,10 +25,9 @@
     <?php require 'helper/source/header.php' ?>
     <main>
         <div class="container">
-            <div style="padding-top: 10px;">
-                <h4 class="text-center">รายชื่อผู้สมัคร - <?php echo  $roomPrefix; ?></h4>
-            </div>
-            <form class="d-xl-flex justify-content-xl-center" style="margin-bottom: 10px;" method="get">
+            <div class="card-background mb-3" style="padding-top: 10px;" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000">
+                <h4 class="text-center mb-3">รายชื่อผู้สมัคร - <?php echo  $roomPrefix; ?></h4>
+                <form class="d-xl-flex justify-content-xl-center" style="margin-bottom: 10px;" method="get">
                 <div class="input-group input-group-sm d-flex d-xl-flex justify-content-end justify-content-xl-end"><span class="input-group-text" style="color: rgb(13,12,12);border-color: rgb(0,0,0); background-color: #f7f7f9;">แสดง</span>
                     <select class="form-select" required="" style="border-color: rgb(0,0,0); color: #888;" name="room">
                         <?php for ($roomNumber = 1; $roomNumber <= 12; $roomNumber++): ?>
@@ -41,7 +40,8 @@
                     <button class="btn btn-primary" type="submit" style="border-color: rgb(0,0,0);"><i class="bi bi-search"></i></button>
                 </div>
             </form>
-            <div class="table-responsive" style="padding-bottom: 10px;">
+            </div>
+            <div class="table-responsive card-background" style="padding-bottom: 10px;" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="1000">
                 <table class="table table-sm table-bordered">
                     <thead>
                         <tr class="text-center text-dark" style="background: #ffe3e3;border-bottom: 2px solid rgb(0,0,0);">
@@ -72,6 +72,9 @@
 
     <?php require 'helper/source/footer.php' ?>
     <?php require 'helper/source/script.php' ?>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
     

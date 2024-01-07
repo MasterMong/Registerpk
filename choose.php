@@ -21,8 +21,8 @@ require('helper/server/checkplan.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เลือกแผนการเรียน | โรงเรียนภูเขียว</title>
     <link rel="stylesheet" href="helper/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <script src="https://kit.fontawesome.com/5134196601.js" crossorigin="anonymous"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="helper/style.css">
 </head>
@@ -31,13 +31,13 @@ require('helper/server/checkplan.php');
     <?php require('helper/source/header.php'); ?>
     <main>
         <div class="container">
-            <div style="padding-top: 10px;">
+            <div class="card-background" style="padding-top: 10px;" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000">
                 <h4>สมัครเรียนรอบโควตา</h4>
                 <div>
                     <span><?php echo $_SESSION['name']; ?></span>
                     <span> เกรดเฉลี่ย : </span>
-                    <span class="badge bg-secondary" style="color: #ff3900!important;">5 เทอม <?php echo $_SESSION['grade']; ?></span> ,
-                    <span class="badge bg-secondary" style="color: #ff3900!important;">คณิต <?php echo $_SESSION['math']; ?></span> ,
+                    <span class="badge bg-secondary" style="color: #ff3900!important;">5 เทอม <?php echo $_SESSION['grade']; ?></span> 
+                    <span class="badge bg-secondary" style="color: #ff3900!important;">คณิต <?php echo $_SESSION['math']; ?></span> 
                     <span class="badge bg-secondary badge bg-secondary" style="color: #ff3900!important;">วิทย์ <?php echo $_SESSION['sci']; ?></span>
                 </div>
                 <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
@@ -51,14 +51,14 @@ require('helper/server/checkplan.php');
                         }
                         ?>
                     </span>
-                    <hr>
+                    
                 <?php endif; ?>
             </div>
-
-            <form method="post" action="helper/server/success.php" id="registrationForm">
+            <hr>
+            <form method="post" action="helper/server/success.php" id="confirmationForm" class="card-background" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1000">
                 <h6 class="mb-5"><span>กรุณา<strong>เลือกแผนการเรียน</strong>ที่ต้องการสมัคร</span></h6>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1000">
                         <div class="card mb-5" style="min-height: 553.8px;">
                             <div>
                                 <img class="card-img-top mb-3" src="helper/plan/sci.gif">
@@ -66,7 +66,7 @@ require('helper/server/checkplan.php');
                             <?php if (isset($_SESSION['username'])) : ?>
                                 <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
                                     <div class="card-body">
-                                        <h5 class="card-title">วิทยาศาสตร์ – คณิตศาสตร์ : SMT</h5>
+                                        <h5 class="card-title text-center">วิทยาศาสตร์ – คณิตศาสตร์ : SMT</h5>
                                         <hr>
                                         <div>
                                             <p class="fw-bold">คุณสมบัติ</p>
@@ -77,11 +77,13 @@ require('helper/server/checkplan.php');
                                                 <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-primary animated-button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์" type="submit" onclick="confirmRegistration('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        <div class="text-center">
+                                            <button class="btn btn-primary animated-button" type="button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์ : SMT" onclick="confirmForm('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        </div>
                                     </div>
                                 <?php else : ?>
                                     <div class="card-body">
-                                        <h5 class="card-title">วิทยาศาสตร์ – คณิตศาสตร์ : SMT</h5>
+                                        <h5 class="card-title text-center">วิทยาศาสตร์ – คณิตศาสตร์ : SMT</h5>
                                         <hr>
                                         <div>
                                             <p class="fw-bold text-danger">คุณสมบัติ</p>
@@ -92,14 +94,13 @@ require('helper/server/checkplan.php');
                                                 <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
                                             </ul>
                                         </div>
-                                        <p class="text-center text-danger">ไม่สามารถสมัครได้เนื่องจากคุณสมบัติไม่ตรงตามเงื่อนไข</p>
+                                        <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
                                     </div>
                                 <?php endif; ?>
                             <?php endif; ?>
                         </div>
                     </div>
-
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="800" data-aos-duration="1000">
                         <div class="card2 mb-5" style="min-height: 553.8px;">
                             <div>
                                 <img class="card-img-top mb-3" src="helper/plan/eng.gif">
@@ -107,7 +108,7 @@ require('helper/server/checkplan.php');
                             <?php if (isset($_SESSION['username'])) : ?>
                                 <?php if ($_SESSION['grade'] >= 2.75) : ?>
                                     <div class="card-body ">
-                                        <h5 class="card-title">ภาษาอังกฤษ – คณิตศาสตร์</h5>
+                                        <h5 class="card-title text-center">ภาษาอังกฤษ – คณิตศาสตร์</h5>
                                         <hr>
                                         <div>
                                             <p class="fw-bold">คุณสมบัติ</p>
@@ -115,11 +116,13 @@ require('helper/server/checkplan.php');
                                                 <li style="height: 96px;">GPAX ตั้งแต่ 2.75</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-primary animated-button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" type="submit" onclick="confirmRegistration('ภาษาอังกฤษ – คณิตศาสตร์')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        <div class="text-center">
+                                            <button class="btn btn-primary animated-button" type="button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" onclick="confirmForm('ภาษาอังกฤษ – คณิตศาสตร์')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        </div>
                                     </div>
                                 <?php else : ?>
                                     <div class="card-body">
-                                        <h5 class="card-title">ภาษาอังกฤษ – คณิตศาสตร์</h5>
+                                        <h5 class="card-title text-center">ภาษาอังกฤษ – คณิตศาสตร์</h5>
                                         <hr>
                                         <div>
                                             <p class="fw-bold text-danger">คุณสมบัติ</p>
@@ -127,14 +130,14 @@ require('helper/server/checkplan.php');
                                                 <li style="height: 96px;">GPAX ตั้งแต่ 2.75</li>
                                             </ul>
                                         </div>
-                                        <p class="text-center text-danger">ไม่สามารถสมัครได้เนื่องจากคุณสมบัติไม่ตรงตามเงื่อนไข</p>
+                                        <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
                                     </div>
                                 <?php endif; ?>
                             <?php endif; ?>
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="1200" data-aos-duration="1000">
                         <div class="card3 mb-5" style="min-height: 553.8px;">
                             <div>
                                 <img class="card-img-top mb-3" src="helper/plan/mou.gif">
@@ -142,7 +145,7 @@ require('helper/server/checkplan.php');
                             <?php if (isset($_SESSION['username'])) : ?>
                                 <?php if ($_SESSION['zero'] == 0) : ?>
                                     <div class="card-body">
-                                        <h6 class="card-title">การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL</h6>
+                                        <h6 class="card-title text-center">การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL</h6>
                                         <hr>
                                         <div>
                                             <p class="fw-bold">คุณสมบัติ</p>
@@ -150,18 +153,21 @@ require('helper/server/checkplan.php');
                                                 <li style="height: 96px;">ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-primary animated-button" name="plan" type="submit" onclick="confirmRegistration('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL')" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" type="submit"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        <div class="text-center">
+                                            <button class="btn btn-primary animated-button" type="button" name="plan" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" onclick="confirmForm('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        </div>
+                                        
                                     </div>
                                 <?php else : ?>
                                     <div class="card-body">
-                                        <h6 class="card-title">การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL</h6>
+                                        <h6 class="card-title text-center">การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL</h6>
                                         <hr>
                                         <div>
                                             <p class="fw-bold text-danger">คุณสมบัติ</p>
                                             <ul>
                                                 <li style="height: 96px;">ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
                                             </ul>
-                                            <p class="text-center text-danger">ไม่สามารถสมัครได้เนื่องจากคุณสมบัติไม่ตรงตามเงื่อนไข</p>
+                                            <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -170,11 +176,15 @@ require('helper/server/checkplan.php');
                     </div>
                 </div>
             </form>
-
         </div>
     </main>
     <?php require 'helper/source/footer.php' ?>
     <?php require 'helper/source/script.php' ?>
+    
+    <script>
+        AOS.init();
+    </script>
+    
 </body>
 
 </html>

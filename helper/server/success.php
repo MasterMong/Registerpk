@@ -1,15 +1,13 @@
 <?php
 require('db.php');
 
-session_start();
-
 if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
     header("Location: ../../regis.php");
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['plan'])) {
-    $valid_plans = array("วิทยาศาสตร์ – คณิตศาสตร์", "ภาษาอังกฤษ – คณิตศาสตร์", "การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL");
+    $valid_plans = array("วิทยาศาสตร์ – คณิตศาสตร์ : SMT", "ภาษาอังกฤษ – คณิตศาสตร์", "การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL");
     if (in_array($_POST['plan'], $valid_plans)) {
         $plan = $_POST['plan'];
         $name = $_SESSION['name'];
@@ -24,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['plan'])) {
             
             if ($conn->query($update_sql) === TRUE) {
                 $_SESSION['plan'] = $plan;
-                header("Location: ../../info.php");
+                header("location: ../../info.php");
                 exit();
             } else {
                 
@@ -37,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['plan'])) {
         exit();
     }
 } else {
-    header("Location: ../../regis.php");
+    header("location: ../../regis.php");
     exit();
 }
 ?>

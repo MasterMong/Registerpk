@@ -1,5 +1,5 @@
 <footer style="border-top: 2px solid var(--bs-pink);background: #fff5f5;" class="mt-3">
-        <div class="container my-3">
+        <div class="container my-3 card-background">
             <div class="row">
                 <div class="d-flex justify-content-center align-items-center col-lg-4 my-3">
                     <div><img src="helper/media/pklogo.png" class="footer-logo"></div>

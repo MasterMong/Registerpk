@@ -22,7 +22,7 @@ require('helper/server/checkplan.php');
     <title>ข้อมูลผู้สมัคร | โรงเรียนภูเขียว</title>
     <link rel="stylesheet" href="helper/bootstrap/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/5134196601.js" crossorigin="anonymous"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="helper/style.css">
 </head>
@@ -31,7 +31,7 @@ require('helper/server/checkplan.php');
     <?php require('helper/source/header.php'); ?>
     <main>
         <div class="container">
-            <div style="padding-top: 10px;">
+            <div class="card-background" style="padding-top: 10px;" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000">
                 <h4>ข้อมูลผู้สมัคร</h4>
                 <?php if (isset($_SESSION['username'])) : ?>
                     <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['username']; ?></div>
@@ -45,10 +45,10 @@ require('helper/server/checkplan.php');
                     <span> เกรดเฉลี่ย : </span>
                     <span class="badge bg-secondary" style="color: #ff3900!important;">
                         5 เทอม <?php echo $_SESSION['grade']; ?>
-                    </span> ,
+                    </span> 
                     <span class="badge bg-secondary" style="color: #ff3900!important;">
                         คณิต <?php echo $_SESSION['math']; ?>
-                    </span> ,
+                    </span> 
                     <span class="badge bg-secondary badge bg-secondary" style="color: #ff3900!important;">
                         วิทย์ <?php echo $_SESSION['sci']; ?>
                     </span>
@@ -58,10 +58,11 @@ require('helper/server/checkplan.php');
                     <?php else : ?>
                         <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span></div>
                     <?php endif; ?>
-                    <hr>
+                    
                 <?php endif; ?>
             </div>
-            <div>
+            <hr>
+            <div class="card-background" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1000">
                 <h4>แนวปฏิบัติและข้อควรทราบ</h4>
                 <p>ในการสมัครเรียน (รอบโควตา) สำหรับนักเรียนชั้นมัธยมศึกษาปีที่ 3 โรงเรียนภูเขียว มีแนวปฏิบัติและข้อควรทราบ ดังนี้</p>
                 <ul>
@@ -90,6 +91,9 @@ require('helper/server/checkplan.php');
 
     <?php require 'helper/source/footer.php' ?>
     <?php require 'helper/source/script.php' ?>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
