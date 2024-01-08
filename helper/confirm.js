@@ -1,6 +1,5 @@
 function confirmForm(planValue) {
     const randomCode = Math.floor(100000 + Math.random() * 900000);
-
     Swal.fire({
         title: 'ยืนยันการสมัครเรียน',
         text: `กรุณาพิมพ์เลข ${randomCode} เพื่อยืนยันการสมัครแผนการเรียน`,

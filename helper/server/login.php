@@ -37,7 +37,6 @@ if ($result->num_rows > 0) {
     
     header("Location: ../../account.php");
 } else {
-    
     header("Location: ../../regis.php");
     session_start();
     $_SESSION['error'] = '<div class="text-center pt-2 pb-3 text-danger">รหัสนักเรียน หรือรหัสประชาชนไม่ถูกต้อง </div>';

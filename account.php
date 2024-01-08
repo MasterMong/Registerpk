@@ -27,11 +27,11 @@ require('helper/server/checkplan.php');
     <link rel="stylesheet" href="helper/style.css">
 </head>
 
-<body style="font-family: Prompt, sans-serif;">
+<body>
     <?php require('helper/source/header.php'); ?>
     <main>
         <div class="container">
-            <div class="card-background" style="padding-top: 10px;" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000">
+            <div class="card-background" id="card--account" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000">
                 <h4>ข้อมูลผู้สมัคร</h4>
                 <?php if (isset($_SESSION['username'])) : ?>
                     <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['username']; ?></div>
@@ -43,13 +43,13 @@ require('helper/server/checkplan.php');
                     <div></div>
                     <span><?php echo $_SESSION['name']; ?></span>
                     <span> เกรดเฉลี่ย : </span>
-                    <span class="badge bg-secondary" style="color: #ff3900!important;">
+                    <span class="badge bg-secondary" class="gpa">
                         5 เทอม <?php echo $_SESSION['grade']; ?>
                     </span> 
-                    <span class="badge bg-secondary" style="color: #ff3900!important;">
+                    <span class="badge bg-secondary" class="gpa">
                         คณิต <?php echo $_SESSION['math']; ?>
                     </span> 
-                    <span class="badge bg-secondary badge bg-secondary" style="color: #ff3900!important;">
+                    <span class="badge bg-secondary badge bg-secondary" class="gpa">
                         วิทย์ <?php echo $_SESSION['sci']; ?>
                     </span>
                     <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
@@ -73,7 +73,7 @@ require('helper/server/checkplan.php');
                             <li>แผนการเรียนการจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL</li>
                         </ol>
                     </li>
-                    <li>นักเรียน<strong><span style="color: rgb(255, 0, 0);">สามารถสมัครได้เพียง 1 แผนการเรียน</span></strong></li>
+                    <li>นักเรียน<strong><span id="span-danger--account">สามารถสมัครได้เพียง 1 แผนการเรียน</span></strong></li>
                     <li>หากต้องการเปลี่ยนแปลงแผนการเรียนที่สมัครนักเรียนจะต้องส่งแบบฟอร์ม <a href="https://drive.google.com/file/d/17p5Unp99m6RwB53ny6BSSKGPxJb9n6fU/view?usp=sharing" target="_blank">นร.01.1</a> ที่ห้องวิชาการ โรงเรียนภูเขียว</li>
                 </ul>
                 <form method="post" action="helper/server/checkagree.php">
@@ -81,7 +81,7 @@ require('helper/server/checkplan.php');
                         <input class="form-check-input" type="checkbox" id="formCheck-1" name="check" required="">
                         <label class="form-check-label" for="formCheck-1">ข้าพเจ้ารับทราบข้อกำหนดและเงื่อนไขการสมัครเรียนรอบโควตาโรงเรียนภูเขียวดังที่ปรากฏด้านบนเรียนร้อยแล้ว</label>
                     </div>
-                    <div class="text-center mt-3" style="margin: 10px;">
+                    <div class="text-center mt-3" id="btn--account">
                         <button class="btn btn-primary animated-button" type="submit" value="agree"><i class="far fa-edit"></i>&nbsp;สมัครเลย</button>
                     </div>
                 </form>
