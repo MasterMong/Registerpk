@@ -36,9 +36,9 @@ require('helper/server/checkplan.php');
                 <div>
                     <span><?php echo $_SESSION['name']; ?></span>
                     <span> เกรดเฉลี่ย : </span>
-                    <span class="badge bg-secondary" class="gpa">5 เทอม <?php echo $_SESSION['grade']; ?></span> 
-                    <span class="badge bg-secondary" class="gpa">คณิต <?php echo $_SESSION['math']; ?></span> 
-                    <span class="badge bg-secondary badge bg-secondary" class="gpa">วิทย์ <?php echo $_SESSION['sci']; ?></span>
+                    <span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['grade']; ?></span> 
+                    <span class="badge bg-secondary gpa">คณิต <?php echo $_SESSION['math']; ?></span> 
+                    <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['sci']; ?></span>
                 </div>
                 <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
                 <?php if (isset($_SESSION['username'])) : ?>
@@ -68,7 +68,7 @@ require('helper/server/checkplan.php');
                                 <hr>
                                 <div>
                                 <?php if (isset($_SESSION['username'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>) : ?>
+                                    <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
                                         <p class="fw-bold">คุณสมบัติ</p>
                                     <?php else : ?>
                                         <p class="fw-bold text-danger">คุณสมบัติ</p>
@@ -82,7 +82,7 @@ require('helper/server/checkplan.php');
                                 </ul>
                                 </div>
                                 <?php if (isset($_SESSION['username'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>) : ?>
+                                    <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
                                         <div class="text-center">
                                         <button class="btn btn-primary animated-button" type="button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์ : SMT" onclick="confirmForm('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
                                         </div>
