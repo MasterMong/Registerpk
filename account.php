@@ -43,13 +43,13 @@ require('helper/server/checkplan.php');
                     <div></div>
                     <span><?php echo $_SESSION['name']; ?></span>
                     <span> เกรดเฉลี่ย : </span>
-                    <span class="badge bg-secondary" class="gpa">
+                    <span class="badge bg-secondary gpa">
                         5 เทอม <?php echo $_SESSION['grade']; ?>
                     </span> 
-                    <span class="badge bg-secondary" class="gpa">
+                    <span class="badge bg-secondary gpa">
                         คณิต <?php echo $_SESSION['math']; ?>
                     </span> 
-                    <span class="badge bg-secondary badge bg-secondary" class="gpa">
+                    <span class="badge bg-secondary badge bg-secondary gpa">
                         วิทย์ <?php echo $_SESSION['sci']; ?>
                     </span>
                     <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
