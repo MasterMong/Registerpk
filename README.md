@@ -1,8 +1,1 @@
-# registerpk
-UPDATA PATCH 2.0
-BUG FIXED
-OPTIMIZE WEBSITE
-OPTIMIZE CSS
-OPTIMIZE PHP
-OPTIMIZE HTML
-AND FASTER
+# Registerpk -- ระบบสมัครเรียนรอบโควต้า 2567 โรงเรียนภูเขียว
