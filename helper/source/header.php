@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-light navbar-expand-md sticky-top" style="padding: 0; border-bottom-width: 2px; border-bottom-style: solid; box-shadow: 0px 2px rgba(255,107,213,0.32);">
+    <nav class="navbar navbar-light navbar-expand-md sticky-top" style="padding: 0; border-bottom-width: 2px; border-bottom-style: solid; box-shadow: 0px 2px #A05EA8">
         <div class="container">
             <a class="navbar-brand" href="./">
                 <img src="helper/media/bannerlogo.png" width="200px">
