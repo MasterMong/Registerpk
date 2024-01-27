@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบสมัครนักเรียน | โรงเรียนภูเขียว</title>
+    <?php require 'helper/source/icon.php'; ?>
     <?php require 'helper/source/link.php'; ?>
     <link rel="stylesheet" href="helper/home.css">
     <script src="https://kit.fontawesome.com/5134196601.js" crossorigin="anonymous"></script>
@@ -35,15 +36,22 @@
             <p data-aos="zoom-in-up" data-aos-delay="200">สำหรับนักเรียนชั้นมัธยมศึกษาปีที่ 3 โรงเรียนภูเขียว</p>
             <p data-aos="zoom-in-up" data-aos-delay="250">ประจำปีการศึกษา 2567 ระหว่างวันที่ 13 - 17 กุมภาพันธ์ 2567</p>
             <div data-aos="fade-up" data-aos-duration="1000">
-                <a id="btn-regis" class="btn btn-primary animated-button" role="button" href="regis.php">
-                    <i class="far fa-edit"></i>&nbsp;สมัครเลย
-                </a>
-                <a id="btn-students" class="btn btn-warning animated-button" role="button" href="students.php">
-                    <i class="bi bi-person-badge"></i>&nbsp;รายชื่อผู้สมัคร
-                </a>
-                <a id="btn-regulations" class="btn btn-info animated-button" role="button" href="regulations.php">
-                    <i class="fas fa-book"></i>&nbsp;อ่านระเบียบการ
-                </a>
+                <div>
+                    <a id="btn-regis" class="btn btn-primary animated-button" role="button" href="regis.php">
+                        <i class="far fa-edit"></i>&nbsp;สมัครเลย
+                    </a>
+                    <a id="btn-students" class="btn btn-warning animated-button" role="button" href="students.php">
+                        <i class="bi bi-person-badge"></i>&nbsp;รายชื่อผู้สมัคร
+                    </a>
+                </div>
+                <div>
+                    <a id="btn-statistics" class="btn btn-danger animated-button" role="button" href="statistics.php">
+                        <i class="bi bi-bar-chart-steps"></i>&nbsp;สถิติการสมัครเรียน
+                    </a>
+                    <a id="btn-regulations" class="btn btn-info animated-button" role="button" href="regulations.php">
+                        <i class="fas fa-book"></i>&nbsp;อ่านระเบียบการ
+                    </a>
+                </div>
             </div>
         </div>
     </div>

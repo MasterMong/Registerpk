@@ -1,14 +1,14 @@
 <?php
 require('helper/server/db.php');
 
-if(!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
     header("Location: regis.php");
     exit();
 }
 
 if (isset($_SESSION['user_agreed']) && $_SESSION['user_agreed'] === true) {
     header('location: choose.php');
-} 
+}
 
 require('helper/server/checkplan.php');
 ?>
@@ -20,6 +20,7 @@ require('helper/server/checkplan.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ข้อมูลผู้สมัคร | โรงเรียนภูเขียว</title>
+    <?php require 'helper/source/icon.php'; ?>
     <link rel="stylesheet" href="helper/bootstrap/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/5134196601.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
@@ -45,10 +46,10 @@ require('helper/server/checkplan.php');
                     <span> เกรดเฉลี่ย : </span>
                     <span class="badge bg-secondary gpa">
                         5 เทอม <?php echo $_SESSION['grade']; ?>
-                    </span> 
+                    </span>
                     <span class="badge bg-secondary gpa">
                         คณิต <?php echo $_SESSION['math']; ?>
-                    </span> 
+                    </span>
                     <span class="badge bg-secondary badge bg-secondary gpa">
                         วิทย์ <?php echo $_SESSION['sci']; ?>
                     </span>
@@ -58,7 +59,7 @@ require('helper/server/checkplan.php');
                     <?php else : ?>
                         <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span></div>
                     <?php endif; ?>
-                    
+
                 <?php endif; ?>
             </div>
             <hr>
@@ -91,6 +92,7 @@ require('helper/server/checkplan.php');
 
     <?php require 'helper/source/footer.php' ?>
     <?php require 'helper/source/script.php' ?>
+    <script src="helper/time.js"></script>
     <script>
         AOS.init();
     </script>

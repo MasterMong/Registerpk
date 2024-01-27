@@ -8,42 +8,54 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
 
 $username = $_SESSION['username'];
 
-$check_plan_sql = "SELECT * FROM students WHERE username = '$username' AND plan IS NOT NULL";
-$check_plan_result = $conn->query($check_plan_sql);
+$check_plan_sql = "SELECT username, plan FROM students WHERE username = ? AND plan IS NOT NULL";
+$check_plan_result = $conn->prepare($check_plan_sql);
+$check_plan_result->bind_param("s", $username);
 
-if ($check_plan_result->num_rows > 0) {
-    $row = $check_plan_result->fetch_assoc();
-    $plan = $row['plan'];
+if ($check_plan_result->execute()) {
+    $check_plan_result->store_result();
 
-    switch ($plan) {
-        case 'วิทยาศาสตร์ – คณิตศาสตร์ : SMT':
-            $img_src = '<img class="img-fluid card-img-top2 info" src="helper/plan/sci.gif">';
-            $detail_plan = '
-                <li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
-                <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
-                <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
-                <li>ผลการเรียน ติด 0 ร มส มผ <span class="badge bg-success">ไม่มี</span> </li>
-            ';
-            break;
+    if ($check_plan_result->num_rows > 0) {
+        $check_plan_result->bind_result($fetched_username, $plan);
+        $check_plan_result->fetch();
 
-        case 'ภาษาอังกฤษ – คณิตศาสตร์':
-            $img_src = '<img class="img-fluid card-img-top2 info2" src="helper/plan/eng.gif">';
-            $detail_plan = '<li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>';
-            break;
+        switch ($plan) {
+            case 'วิทยาศาสตร์ – คณิตศาสตร์ : SMT':
+                $img_src = '<img class="img-fluid card-img-top2 info" src="helper/plan/sci.gif">';
+                $detail_plan = '
+                    <li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
+                    <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
+                    <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
+                    <li>ผลการเรียน ติด 0 ร มส มผ <span class="badge bg-success">ไม่มี</span> </li>
+                ';
+                break;
 
-        case 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL':
-            $img_src = '<img class="img-fluid card-img-top2 info3" src="helper/plan/mou.gif">';
-            $detail_plan = '<li>ผลการเรียน ติด 0 ร มส มผ <span class="badge bg-success">ไม่มี</span> </li>';
-            break;
+            case 'ภาษาอังกฤษ – คณิตศาสตร์':
+                $img_src = '<img class="img-fluid card-img-top2 info2" src="helper/plan/eng.gif">';
+                $detail_plan = '<li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>';
+                break;
 
-        default:
-            header("Location: account.php");
-            exit();
+            case 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL':
+                $img_src = '<img class="img-fluid card-img-top2 info3" src="helper/plan/mou.gif">';
+                $detail_plan = '<li>ผลการเรียน ติด 0 ร มส มผ <span class="badge bg-success">ไม่มี</span> </li>';
+                break;
+
+            default:
+                header("Location: account.php");
+                exit();
+        }
+    } else {
+        header("Location: account.php");
+        exit();
     }
 } else {
+    header("Location: account.php");
     exit();
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +63,7 @@ if ($check_plan_result->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>สถานะการสมัคร | โรงเรียนภูเขียว</title>
+    <?php require 'helper/source/icon.php'; ?>
     <link rel="stylesheet" href="helper/bootstrap/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/5134196601.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">

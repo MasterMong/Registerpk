@@ -21,9 +21,9 @@ if ($result->num_rows > 0) {
         $totalStudents = $row["total_students"];
         $planCounts[$plan] = $totalStudents;
     }
-} 
-$totalA = 36; 
-$totalB = 30; 
+}
+$totalA = 36;
+$totalB = 30;
 
 $countA = $planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT'] ?? 0;
 $countB = $planCounts['ภาษาอังกฤษ – คณิตศาสตร์'] ?? 0;
@@ -32,14 +32,14 @@ if ($countA != 0) {
     $percentageA = ($totalA / $countA) * 100;
     $roundedPercentageA = round($percentageA, 2);
 } else {
-    $roundedPercentageA = 0; 
+    $roundedPercentageA = 0;
 }
 
 if ($countB != 0) {
     $percentageB = ($totalB / $countB) * 100;
     $roundedPercentageB = round($percentageB, 2);
 } else {
-    $roundedPercentageB = 0; 
+    $roundedPercentageB = 0;
 }
 
 
@@ -68,7 +68,7 @@ if ($countB != 0) {
                 <div class="text-center">
                     <h3>กรุณาเลือกแผนการเรียนภายใน</h3>
                     <h3 class="text-danger" id="countdownDisplay"></h3>
-                    <div style="color: #ff5656;">
+                    <div style="color: #ff3333;">
                         <h4><i class="bi bi-heart-fill"></i></h4>
                         <h5 class="fw-bolder">สามารถตัดสินใจได้เพียง 1 ครั้ง</h5>
                     </div>
@@ -79,8 +79,8 @@ if ($countB != 0) {
                 <div>
                     <span><?php echo $_SESSION['name']; ?></span>
                     <span> เกรดเฉลี่ย : </span>
-                    <span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['grade']; ?></span> 
-                    <span class="badge bg-secondary gpa">คณิต <?php echo $_SESSION['math']; ?></span> 
+                    <span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['grade']; ?></span>
+                    <span class="badge bg-secondary gpa">คณิต <?php echo $_SESSION['math']; ?></span>
                     <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['sci']; ?></span>
                 </div>
                 <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
@@ -94,14 +94,14 @@ if ($countB != 0) {
                         }
                         ?>
                     </span>
-                    
+
                 <?php endif; ?>
             </div>
             <hr>
             <form method="post" action="helper/server/success.php" id="confirmationForm" class="card-background" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1000">
                 <h6 class="mb-5"><span>กรุณา<strong>เลือกแผนการเรียน</strong>ที่ต้องการสมัคร</span></h6>
                 <div class="row">
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1000">
+                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="800" data-aos-duration="1000">
                         <div class="card mb-5" class="choose-plan--choose">
                             <div>
                                 <img class="card-img-top mb-3" src="helper/plan/sci.gif">
@@ -110,47 +110,39 @@ if ($countB != 0) {
                                 <h5 class="card-title text-center">วิทยาศาสตร์ – คณิตศาสตร์ : SMT</h5>
                                 <div class="text-center">
                                     <p class="m-0">จำนวนการสมัครแล้ว <?php echo $planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT'] ?? 0; ?> คน</p>
-                                    
+
                                     <?php
                                     if ($countA != 0) {
-                                        
+
                                         if ($planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT'] > 36) { ?>
-                                        <p class="m-0">โอกาสสอบติด <?php echo $roundedPercentageA ?>% <i class="bi bi-flag-fill"></i></p>
+                                            <p class="m-0">โอกาสสอบติด <?php echo $roundedPercentageA ?>% <i class="bi bi-flag-fill"></i></p>
                                         <?php } ?>
                                     <?php
                                     }
                                     ?>
-                                
+
                                 </div>
                                 <hr>
                                 <div>
-                                <?php if (isset($_SESSION['username'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
-                                        <p class="fw-bold">คุณสมบัติ</p>
-                                    <?php else : ?>
-                                        <p class="fw-bold text-danger">คุณสมบัติ</p>
+                                    <?php if (isset($_SESSION['username'])) : ?>
+                                        <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
+                                            <p class="fw-bold">คุณสมบัติ</p>
+                                        <?php else : ?>
+                                            <p class="fw-bold text-danger">คุณสมบัติ</p>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                <?php endif; ?>
-                                <ul>
-                                    <li>GPAX ตั้งแต่ 2.75</li>
-                                    <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5</li>
-                                    <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5</li>
-                                    <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
-                                </ul>
+                                    <ul>
+                                        <li>GPAX ตั้งแต่ 2.75</li>
+                                        <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5</li>
+                                        <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5</li>
+                                        <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
+                                    </ul>
                                 </div>
-                                <?php if (isset($_SESSION['username'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
-                                        <div class="text-center">
-                                        <button class="btn btn-primary animated-button" type="button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์ : SMT" onclick="confirmForm('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
-                                        </div>
-                                    <?php else : ?>
-                                        <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
+                                <p class="text-center text-danger">หมดเวลารับสมัครรอบโควต้า</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1000">
+                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="800" data-aos-duration="1000">
                         <div class="card2 mb-5" class="choose-plan--choose">
                             <div>
                                 <img class="card-img-top mb-3" src="helper/plan/eng.gif">
@@ -159,7 +151,6 @@ if ($countB != 0) {
                                 <h5 class="card-title text-center">ภาษาอังกฤษ – คณิตศาสตร์</h5>
                                 <div class="text-center">
                                     <p class="m-0">จำนวนการสมัครแล้ว <?php echo $planCounts['ภาษาอังกฤษ – คณิตศาสตร์'] ?? 0; ?> คน</p>
-
                                     <?php
                                     if ($countB != 0) {
                                         if ($planCounts['ภาษาอังกฤษ – คณิตศาสตร์'] > 30) { ?>
@@ -172,26 +163,18 @@ if ($countB != 0) {
                                 </div>
                                 <hr>
                                 <div>
-                                <?php if (isset($_SESSION['username'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75) : ?>
-                                        <p class="fw-bold">คุณสมบัติ</p>
-                                    <?php else : ?>
-                                        <p class="fw-bold text-danger">คุณสมบัติ</p>
+                                    <?php if (isset($_SESSION['username'])) : ?>
+                                        <?php if ($_SESSION['grade'] >= 2.75) : ?>
+                                            <p class="fw-bold">คุณสมบัติ</p>
+                                        <?php else : ?>
+                                            <p class="fw-bold text-danger">คุณสมบัติ</p>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                <?php endif; ?>
-                                <ul>
-                                    <li class="li--choose">GPAX ตั้งแต่ 2.75</li>
-                                </ul>
+                                    <ul>
+                                        <li class="li--choose">GPAX ตั้งแต่ 2.75</li>
+                                    </ul>
                                 </div>
-                                <?php if (isset($_SESSION['username'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75) : ?>
-                                        <div class="text-center">
-                                        <button class="btn btn-primary animated-button" type="button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" onclick="confirmForm('ภาษาอังกฤษ – คณิตศาสตร์')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
-                                        </div>
-                                    <?php else : ?>
-                                        <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
+                                <p class="text-center text-danger">หมดเวลารับสมัครรอบโควต้า</p>
                             </div>
                         </div>
                     </div>
@@ -207,39 +190,50 @@ if ($countB != 0) {
                                 </div>
                                 <hr>
                                 <div>
-                                <?php if (isset($_SESSION['username'])) : ?>
-                                    <?php if ($_SESSION['zero'] == 0) : ?>
-                                        <p class="fw-bold">คุณสมบัติ</p>
-                                    <?php else : ?>
-                                        <p class="fw-bold text-danger">คุณสมบัติ</p>
+                                    <?php if (isset($_SESSION['username'])) : ?>
+                                        <?php if ($_SESSION['zero'] == 0) : ?>
+                                            <p class="fw-bold">คุณสมบัติ</p>
+                                        <?php else : ?>
+                                            <p class="fw-bold text-danger">คุณสมบัติ</p>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                <?php endif; ?>
-                                <ul>
-                                    <li class="li--choose">ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
-                                </ul>
+                                    <ul>
+                                        <li class="li--choose">ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
+                                    </ul>
                                 </div>
-                                <?php if (isset($_SESSION['username'])) : ?>
-                                    <?php if ($_SESSION['zero'] == 0) : ?>
-                                        <div class="text-center">
-                                            <button class="btn btn-primary animated-button" type="button" name="plan" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" onclick="confirmForm('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
-                                        </div>
-                                    <?php else : ?>
-                                        <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
+                                <p class="text-center text-danger">หมดเวลารับสมัครรอบโควต้า</p>
+                            </div>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </main>
     <?php require 'helper/source/footer.php' ?>
     <?php require 'helper/source/script.php' ?>
-    <script src="helper/time.js"></script>
+
     <script>
         AOS.init();
+        var countdownTime = new Date('2024-02-15T00:00:00');
+        var countdownInterval;
+
+        function updateCountdown() {
+            var now = new Date().getTime();
+            var distance = countdownTime - now;
+
+            if (distance > 0) {
+                clearInterval(countdownInterval);
+                window.location.href = "index.php";
+            } else {
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("countdownDisplay").innerHTML = "เวลาที่เหลือ: " + hours + " ชั่วโมง " + minutes + " นาที " + seconds + " วินาที";
+            }
+        }
+        countdownInterval = setInterval(updateCountdown, 1000);
     </script>
-    
+
 </body>
 
 </html>
