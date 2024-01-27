@@ -3,7 +3,7 @@ $hostname = "localhost";
 $username = "root";
 $password = "";
 $database = "student_register";
-$port = 3307;
+$port = 3306;
 $conn = mysqli_connect($hostname, $username, $password, $database, $port);
 session_start();
 if (!$conn) {

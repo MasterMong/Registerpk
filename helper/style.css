@@ -38,9 +38,12 @@ main {
 }
 
 .gpa {
-    color: #ff3900!important;
+    color: #f96e46!important;
 }
 
+.bg-warning {
+    color: #606060!important;
+}
 /* regis page */
 
 #main--regis {
@@ -313,4 +316,31 @@ main {
 .card-img-top2 {
     object-fit: cover;
     border-radius: 40px; 
+}
+
+#countsmt {
+    background-color: rgba(255, 99, 132, 0.2);
+}
+#counteng {
+    background-color: rgba(54, 162, 235, 0.2);
+}
+#countmou {
+    background-color: rgb(81, 226, 144, 0.2);
+}
+
+@keyframes countdownAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.025);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#countdownDisplay {
+    transition: opacity 0.5s ease-in-out;
+    animation: countdownAnimation 1s infinite; 
 }

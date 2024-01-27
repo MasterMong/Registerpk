@@ -6,6 +6,8 @@ function confirmForm(planValue) {
         input: 'text',
         inputPlaceholder: `${randomCode}`,
         showCancelButton: true,
+        confirmButtonColor: '#51e290',
+        cancelButtonColor: '#ff508d',
         confirmButtonText: 'ยืนยัน',
         cancelButtonText: 'ยกเลิก',
         preConfirm: (inputCode) => {
@@ -14,7 +16,9 @@ function confirmForm(planValue) {
             } else {
                 Swal.fire({
                     title: "สมัครเรียนเรียบร้อย",
-                    icon: "success"
+                    icon: "success",
+                    confirmButtonColor: '#51e290',
+                    confirmButtonText: 'ตกลง'
                 }).then(() => {
                     var form = document.getElementById("confirmationForm");
                     var planInput = document.createElement("input");

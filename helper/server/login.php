@@ -39,7 +39,15 @@ if ($result->num_rows > 0) {
 } else {
     header("Location: ../../regis.php");
     session_start();
-    $_SESSION['error'] = '<div class="text-center pt-2 pb-3 text-danger">รหัสนักเรียน หรือรหัสประชาชนไม่ถูกต้อง </div>';
+    $_SESSION['error'] = '<script>
+    Swal.fire({
+        icon: "error",
+        title: "รหัสไม่ถูกต้อง",
+        text: "โปรดเช็ครหัสนักเรียน หรือรหัสประชาชนแล้วลองใหม่",
+        confirmButtonColor: "#e25f5f",
+        confirmButtonText: "ลองใหม่อีกครั้ง",
+    });
+    </script>';
     session_write_close();
 }
 

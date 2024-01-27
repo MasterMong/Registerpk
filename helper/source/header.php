@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-light navbar-expand-md sticky-top" style="padding: 0; border-bottom-width: 2px; border-bottom-style: solid; box-shadow: 0px 2px #A05EA8">
+    <nav class="navbar navbar-light navbar-expand-md sticky-top" style="padding: 0; border-bottom-width: 2px; border-bottom-style: solid; box-shadow: 0px 2px #efb8f291">
         <div class="container">
             <a class="navbar-brand" href="./">
                 <img src="helper/media/bannerlogo.png" width="200px">
@@ -15,6 +15,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="students.php"><i class="bi bi-person-badge"></i>&nbsp;รายชื่อผู้สมัคร</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="statistics.php"><i class="bi bi-bar-chart-steps"></i>&nbsp;สถิติการสมัครเรียน</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="regulations.php"><i class="fas fa-book"></i>&nbsp;อ่านระเบียบการ</a>
