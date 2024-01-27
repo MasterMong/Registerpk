@@ -1,7 +1,6 @@
 <?php
 require('helper/server/db.php');
 
-$planCounts = array();
 $countA = 0; 
 $countB = 0;
 $countC = 0;
@@ -65,14 +64,14 @@ if (isset($planCounts['การจัดการธุรกิจการค
         var labels = Object.keys(planData);
         var values = Object.values(planData);
 
-        var countAData = values[1] || 0; 
-        var countBData = values[2] || 0;
-        var countCData = values[3] || 0;
+        var countAData = <?php echo $countA ?>; 
+        var countBData = <?php echo $countB ?>;
+        var countCData = <?php echo $countC ?>;
 
         var countAInt = parseInt(countAData);
         var countBInt = parseInt(countBData);
         var countCInt = parseInt(countCData);
-
+    
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
