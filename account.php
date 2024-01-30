@@ -1,7 +1,7 @@
 <?php
 require('helper/server/db.php');
 
-if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
     header("Location: regis.php");
     exit();
 }
@@ -34,8 +34,8 @@ require('helper/server/checkplan.php');
         <div class="container">
             <div class="card-background" id="card--account" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000">
                 <h4>ข้อมูลผู้สมัคร</h4>
-                <?php if (isset($_SESSION['username'])) : ?>
-                    <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['username']; ?></div>
+                <?php if (isset($_SESSION['student_id'])) : ?>
+                    <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['student_id']; ?></div>
                     <div>
                         <span>ชื่อ - สกุล : </span>
                         <span><?php echo $_SESSION['name']; ?></span>

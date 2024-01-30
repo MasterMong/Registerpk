@@ -1,7 +1,7 @@
 <?php
 require('db.php');
 
-if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
     header("Location: ../../regis.php");
     exit();
 }

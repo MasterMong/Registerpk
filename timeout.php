@@ -1,7 +1,7 @@
 <?php
 require('helper/server/db.php');
 
-if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
     header("Location: regis.php");
     exit();
 }
@@ -84,7 +84,7 @@ if ($countB != 0) {
                     <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['sci']; ?></span>
                 </div>
                 <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
-                <?php if (isset($_SESSION['username'])) : ?>
+                <?php if (isset($_SESSION['student_id'])) : ?>
                     <span>
                         <?php
                         if ($_SESSION['zero'] == 1) {
@@ -124,7 +124,7 @@ if ($countB != 0) {
                                 </div>
                                 <hr>
                                 <div>
-                                    <?php if (isset($_SESSION['username'])) : ?>
+                                    <?php if (isset($_SESSION['student_id'])) : ?>
                                         <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
                                             <p class="fw-bold">คุณสมบัติ</p>
                                         <?php else : ?>
@@ -163,7 +163,7 @@ if ($countB != 0) {
                                 </div>
                                 <hr>
                                 <div>
-                                    <?php if (isset($_SESSION['username'])) : ?>
+                                    <?php if (isset($_SESSION['student_id'])) : ?>
                                         <?php if ($_SESSION['grade'] >= 2.75) : ?>
                                             <p class="fw-bold">คุณสมบัติ</p>
                                         <?php else : ?>
@@ -190,7 +190,7 @@ if ($countB != 0) {
                                 </div>
                                 <hr>
                                 <div>
-                                    <?php if (isset($_SESSION['username'])) : ?>
+                                    <?php if (isset($_SESSION['student_id'])) : ?>
                                         <?php if ($_SESSION['zero'] == 0) : ?>
                                             <p class="fw-bold">คุณสมบัติ</p>
                                         <?php else : ?>

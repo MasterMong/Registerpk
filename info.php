@@ -1,22 +1,22 @@
 <?php
 require('helper/server/db.php');
 
-if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
     header("Location: regis.php");
     exit();
 }
 
-$username = $_SESSION['username'];
+$student_id = $_SESSION['student_id'];
 
-$check_plan_sql = "SELECT username, plan FROM students WHERE username = ? AND plan IS NOT NULL";
+$check_plan_sql = "SELECT student_id, plan FROM students WHERE student_id = ? AND plan IS NOT NULL";
 $check_plan_result = $conn->prepare($check_plan_sql);
-$check_plan_result->bind_param("s", $username);
+$check_plan_result->bind_param("s", $student_id);
 
 if ($check_plan_result->execute()) {
     $check_plan_result->store_result();
 
     if ($check_plan_result->num_rows > 0) {
-        $check_plan_result->bind_result($fetched_username, $plan);
+        $check_plan_result->bind_result($fetched_student_id, $plan);
         $check_plan_result->fetch();
 
         switch ($plan) {
@@ -76,8 +76,8 @@ if ($check_plan_result->execute()) {
         <div class="container">
             <div id="card--info" class="card-background" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000">
                 <h4>ข้อมูลผู้สมัคร</h4>
-                <?php if (isset($_SESSION['username'])): ?>
-                    <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['username']; ?></div>
+                <?php if (isset($_SESSION['student_id'])): ?>
+                    <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['student_id']; ?></div>
                     <div><span>ชื่อ - สกุล : </span><span><?php echo $_SESSION['name']; ?></span><span> ห้อง : 3/</span><?php echo $_SESSION['room']; ?></div>
                     <span><?php echo $_SESSION['name']; ?></span>
                     <span> เกรดเฉลี่ย : </span><span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['grade']; ?></span> 

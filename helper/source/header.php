@@ -23,7 +23,7 @@
                         <a class="nav-link" href="regulations.php"><i class="fas fa-book"></i>&nbsp;อ่านระเบียบการ</a>
                     </li>
                     <?php
-                        if (isset($_SESSION['username'])) {
+                        if (isset($_SESSION['student_id'])) {
                             echo '<li class="nav-item"><a class="nav-link" href="helper/server/logout.php"><i class="fas fa-sign-out-alt"></i>&nbsp;ออกจากระบบ</a></li>';
                         ?>
                             

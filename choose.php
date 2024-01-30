@@ -1,7 +1,7 @@
 <?php
 require('helper/server/db.php');
 
-if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
     header("Location: regis.php");
     exit();
 }
@@ -84,7 +84,7 @@ if ($countB != 0) {
                     <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['sci']; ?></span>
                 </div>
                 <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
-                <?php if (isset($_SESSION['username'])) : ?>
+                <?php if (isset($_SESSION['student_id'])) : ?>
                     <span>
                         <?php
                         if ($_SESSION['zero'] == 1) {
@@ -124,7 +124,7 @@ if ($countB != 0) {
                                 </div>
                                 <hr>
                                 <div>
-                                <?php if (isset($_SESSION['username'])) : ?>
+                                <?php if (isset($_SESSION['student_id'])) : ?>
                                     <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
                                         <p class="fw-bold">คุณสมบัติ</p>
                                     <?php else : ?>
@@ -138,7 +138,7 @@ if ($countB != 0) {
                                     <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
                                 </ul>
                                 </div>
-                                <?php if (isset($_SESSION['username'])) : ?>
+                                <?php if (isset($_SESSION['student_id'])) : ?>
                                     <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
                                         <div class="text-center">
                                         <button class="btn btn-primary animated-button" type="button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์ : SMT" onclick="confirmForm('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
@@ -172,7 +172,7 @@ if ($countB != 0) {
                                 </div>
                                 <hr>
                                 <div>
-                                <?php if (isset($_SESSION['username'])) : ?>
+                                <?php if (isset($_SESSION['student_id'])) : ?>
                                     <?php if ($_SESSION['grade'] >= 2.75) : ?>
                                         <p class="fw-bold">คุณสมบัติ</p>
                                     <?php else : ?>
@@ -183,7 +183,7 @@ if ($countB != 0) {
                                     <li class="li--choose">GPAX ตั้งแต่ 2.75</li>
                                 </ul>
                                 </div>
-                                <?php if (isset($_SESSION['username'])) : ?>
+                                <?php if (isset($_SESSION['student_id'])) : ?>
                                     <?php if ($_SESSION['grade'] >= 2.75) : ?>
                                         <div class="text-center">
                                         <button class="btn btn-primary animated-button" type="button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" onclick="confirmForm('ภาษาอังกฤษ – คณิตศาสตร์')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
@@ -207,7 +207,7 @@ if ($countB != 0) {
                                 </div>
                                 <hr>
                                 <div>
-                                <?php if (isset($_SESSION['username'])) : ?>
+                                <?php if (isset($_SESSION['student_id'])) : ?>
                                     <?php if ($_SESSION['zero'] == 0) : ?>
                                         <p class="fw-bold">คุณสมบัติ</p>
                                     <?php else : ?>
@@ -218,7 +218,7 @@ if ($countB != 0) {
                                     <li class="li--choose">ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
                                 </ul>
                                 </div>
-                                <?php if (isset($_SESSION['username'])) : ?>
+                                <?php if (isset($_SESSION['student_id'])) : ?>
                                     <?php if ($_SESSION['zero'] == 0) : ?>
                                         <div class="text-center">
                                             <button class="btn btn-primary animated-button" type="button" name="plan" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" onclick="confirmForm('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>

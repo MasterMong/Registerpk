@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `students` (
-  `sid` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
+  `cid` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `room` varchar(255) NOT NULL,
   `student_number` varchar(255) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`sid`, `username`, `password`, `name`, `room`, `student_number`, `plan`, `grade`, `math`, `sci`, `zero`, `point`) VALUES
+INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `grade`, `math`, `sci`, `zero`, `point`) VALUES
 (1, '37015', '1409903723398', 'นายกิตติธัช สายวรสิงห์', '1', '1', '', 0, 0, 0, 0, 0),
 (2, '37016', '1409600454161', 'นายจิรภัทร นามวงค์', '1', '2', '', 0, 0, 0, 0, 0),
 (3, '37017', '1209000394666', 'นายจิรัฎฐ์ วราพลสวัสดิ์', '1', '3', '', 0, 0, 0, 0, 0),
@@ -551,7 +551,7 @@ INSERT INTO `students` (`sid`, `username`, `password`, `name`, `room`, `student_
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`sid`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -561,7 +561,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=496;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=496;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

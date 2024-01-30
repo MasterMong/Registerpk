@@ -69,7 +69,7 @@ if (!empty($selectedRoom) && $selectedRoom !== 'all') {
                     <tbody>
                         <tr class="text-black">
                             <td class="text-center"><?php echo $i; ?></td>
-                            <td class="text-center"><?php echo $row['username'];?></td>
+                            <td class="text-center"><?php echo $row['student_id'];?></td>
                             <td><?php echo $row['name'];?></td>
                             <td class="text-center"><?php echo $row['room'];?></td>
                             <td class="text-center"><?php echo $row['student_number'];?></td>

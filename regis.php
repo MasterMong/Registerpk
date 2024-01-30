@@ -1,6 +1,6 @@
 <?php
 require('helper/server/db.php');
-if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
+if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
     echo ("");
 } else {
     header("Location: account.php");
@@ -37,11 +37,11 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != true) {
                     <div id="s-id.regis">
                         <fieldset>
                             <legend class="fs-5 my-2">เลขประจำตัวนักเรียน</legend>
-                            <input class="form-control" id="s-id-input--regis" type="text" name="username" placeholder="ระบุรหัสนักเรียน" required="">
+                            <input class="form-control" id="s-id-input--regis" type="text" name="student_id" placeholder="ระบุรหัสนักเรียน" required="">
                         </fieldset>
                         <fieldset>
                             <legend class="fs-5 my-2">เลขประจำตัวประชาชน</legend>
-                            <input class="form-control" id="s-p-input--regis" type="text" name="password" placeholder="เลขประจำตัวประชาชน" required="">
+                            <input class="form-control" id="s-p-input--regis" type="text" name="cid" placeholder="เลขประจำตัวประชาชน" required="">
                         </fieldset>
                     </div>
                     <div class="text-end d-flex justify-content-end my-3">

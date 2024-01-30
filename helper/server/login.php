@@ -1,14 +1,14 @@
 <?php
 include 'db.php';
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$student_id = $_POST['student_id'];
+$cid = $_POST['cid'];
 
-$query = "SELECT * FROM students WHERE username = ? AND password = ?";
+$query = "SELECT * FROM students WHERE student_id = ? AND cid = ?";
 $stmt = mysqli_prepare($conn, $query);
 
 
-mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+mysqli_stmt_bind_param($stmt, "ss", $student_id, $cid);
 
 
 mysqli_stmt_execute($stmt);
@@ -20,8 +20,8 @@ if ($result->num_rows > 0) {
 
     session_start();
 
-    $_SESSION['username'] = $data->username;
-    $_SESSION['password'] = $data->password;
+    $_SESSION['student_id'] = $data->student_id;
+    $_SESSION['cid'] = $data->cid;
     $_SESSION['room'] = $data->room;
     $_SESSION['grade'] = $data->grade;
     $_SESSION['math'] = $data->math;
