@@ -4,26 +4,26 @@
             .then(response => response.json())
             .then(data => {
                 const labels = Object.keys(data);
-                const datapoints = Object.values(data);
+                const databehavior_passs = Object.values(data);
 
                 const chartData = {
                     labels: labels,
                     datasets: [{
                         label: 'วิทยาศาสตร์ – คณิตศาสตร์ : SMT',
-                        data: datapoints,
+                        data: databehavior_passs,
                         borderColor: '#ff8ec1',
                         fill: false,
                         cubicInterpolationMode: 'monotone',
                         tension: 0.4
                     }, {
                         label: 'ภาษาอังกฤษ – คณิตศาสตร์',
-                        data: datapoints,
+                        data: databehavior_passs,
                         borderColor: '#7ad5fd',
                         fill: false,
                         tension: 0.4
                     }, {
                         label: 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL',
-                        data: datapoints,
+                        data: databehavior_passs,
                         borderColor: '#88ff91',
                         fill: false
                     }]

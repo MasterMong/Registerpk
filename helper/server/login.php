@@ -23,13 +23,13 @@ if ($result->num_rows > 0) {
     $_SESSION['student_id'] = $data->student_id;
     $_SESSION['cid'] = $data->cid;
     $_SESSION['room'] = $data->room;
-    $_SESSION['grade'] = $data->grade;
-    $_SESSION['math'] = $data->math;
-    $_SESSION['sci'] = $data->sci;
-    $_SESSION['zero'] = $data->zero;
+    $_SESSION['GPAX'] = $data->GPAX;
+    $_SESSION['GPA_MAT'] = $data->GPA_MAT;
+    $_SESSION['GPA_SCI'] = $data->GPA_SCI;
+    $_SESSION['GPA_Fail'] = $data->GPA_Fail;
     $_SESSION['name'] = $data->name;
     $_SESSION['plan'] = $data->plan;
-    $_SESSION['point'] = $data->point;
+    $_SESSION['behavior_pass'] = $data->behavior_pass;
 
     
     session_write_close();

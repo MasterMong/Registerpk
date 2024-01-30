@@ -8,7 +8,7 @@ if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">

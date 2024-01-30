@@ -9,7 +9,7 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+07:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -35,18 +35,18 @@ CREATE TABLE `students` (
   `room` varchar(255) NOT NULL,
   `student_number` varchar(255) NOT NULL,
   `plan` text NOT NULL,
-  `grade` int(11) NOT NULL,
-  `math` int(11) NOT NULL,
-  `sci` int(11) NOT NULL,
-  `zero` int(11) NOT NULL,
-  `point` int(255) NOT NULL
+  `GPAX` int(11) NOT NULL,
+  `GPA_MAT` int(11) NOT NULL,
+  `GPA_SCI` int(11) NOT NULL,
+  `GPA_Fail` int(11) NOT NULL,
+  `behavior_pass` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `grade`, `math`, `sci`, `zero`, `point`) VALUES
+INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `GPAX`, `GPA_MAT`, `GPA_SCI`, `GPA_Fail`, `behavior_pass`) VALUES
 (1, '37015', '1409903723398', 'นายกิตติธัช สายวรสิงห์', '1', '1', '', 0, 0, 0, 0, 0),
 (2, '37016', '1409600454161', 'นายจิรภัทร นามวงค์', '1', '2', '', 0, 0, 0, 0, 0),
 (3, '37017', '1209000394666', 'นายจิรัฎฐ์ วราพลสวัสดิ์', '1', '3', '', 0, 0, 0, 0, 0),

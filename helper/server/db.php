@@ -9,3 +9,4 @@ session_start();
 if (!$conn) {
     die("เชื่อมต่อกับ database ไม่ได้" . mysqli_connect_error());
 }
+mysqli_set_charset($conn, 'utf8');

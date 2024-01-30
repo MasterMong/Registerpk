@@ -46,7 +46,7 @@ if ($countB != 0) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
@@ -79,15 +79,15 @@ if ($countB != 0) {
                 <div>
                     <span><?php echo $_SESSION['name']; ?></span>
                     <span> เกรดเฉลี่ย : </span>
-                    <span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['grade']; ?></span> 
-                    <span class="badge bg-secondary gpa">คณิต <?php echo $_SESSION['math']; ?></span> 
-                    <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['sci']; ?></span>
+                    <span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['GPAX']; ?></span> 
+                    <span class="badge bg-secondary gpa">คณิต <?php echo $_SESSION['GPA_MAT']; ?></span> 
+                    <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['GPA_SCI']; ?></span>
                 </div>
-                <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
+                <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['behavior_pass']; ?> คะแนน</span></div>
                 <?php if (isset($_SESSION['student_id'])) : ?>
                     <span>
                         <?php
-                        if ($_SESSION['zero'] == 1) {
+                        if ($_SESSION['GPA_Fail'] == 1) {
                             echo 'ติด 0 ร มส มผ : <span class="badge bg-danger">มี</span>';
                         } else {
                             echo 'ติด 0 ร มส มผ : <span class="badge bg-success">ไม่มี</span>';
@@ -104,7 +104,7 @@ if ($countB != 0) {
                     <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1000">
                         <div class="card mb-5" class="choose-plan--choose">
                             <div>
-                                <img class="card-img-top mb-3" src="helper/plan/sci.gif">
+                                <img class="card-img-top mb-3" src="helper/plan/GPA_SCI.gif">
                             </div>
                             <div class="card-body ">
                                 <h5 class="card-title text-center">วิทยาศาสตร์ – คณิตศาสตร์ : SMT</h5>
@@ -125,7 +125,7 @@ if ($countB != 0) {
                                 <hr>
                                 <div>
                                 <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
+                                    <?php if ($_SESSION['GPAX'] >= 2.75 && $_SESSION['GPA_MAT'] >= 2.5 && $_SESSION['GPA_SCI'] >= 2.5 && $_SESSION['GPA_Fail'] == 0) : ?>
                                         <p class="fw-bold">คุณสมบัติ</p>
                                     <?php else : ?>
                                         <p class="fw-bold text-danger">คุณสมบัติ</p>
@@ -139,7 +139,7 @@ if ($countB != 0) {
                                 </ul>
                                 </div>
                                 <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75 && $_SESSION['math'] >= 2.5 && $_SESSION['sci'] >= 2.5 && $_SESSION['zero'] == 0) : ?>
+                                    <?php if ($_SESSION['GPAX'] >= 2.75 && $_SESSION['GPA_MAT'] >= 2.5 && $_SESSION['GPA_SCI'] >= 2.5 && $_SESSION['GPA_Fail'] == 0) : ?>
                                         <div class="text-center">
                                         <button class="btn btn-primary animated-button" type="button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์ : SMT" onclick="confirmForm('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
                                         </div>
@@ -173,7 +173,7 @@ if ($countB != 0) {
                                 <hr>
                                 <div>
                                 <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75) : ?>
+                                    <?php if ($_SESSION['GPAX'] >= 2.75) : ?>
                                         <p class="fw-bold">คุณสมบัติ</p>
                                     <?php else : ?>
                                         <p class="fw-bold text-danger">คุณสมบัติ</p>
@@ -184,7 +184,7 @@ if ($countB != 0) {
                                 </ul>
                                 </div>
                                 <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['grade'] >= 2.75) : ?>
+                                    <?php if ($_SESSION['GPAX'] >= 2.75) : ?>
                                         <div class="text-center">
                                         <button class="btn btn-primary animated-button" type="button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" onclick="confirmForm('ภาษาอังกฤษ – คณิตศาสตร์')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
                                         </div>
@@ -208,7 +208,7 @@ if ($countB != 0) {
                                 <hr>
                                 <div>
                                 <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['zero'] == 0) : ?>
+                                    <?php if ($_SESSION['GPA_Fail'] == 0) : ?>
                                         <p class="fw-bold">คุณสมบัติ</p>
                                     <?php else : ?>
                                         <p class="fw-bold text-danger">คุณสมบัติ</p>
@@ -219,7 +219,7 @@ if ($countB != 0) {
                                 </ul>
                                 </div>
                                 <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['zero'] == 0) : ?>
+                                    <?php if ($_SESSION['GPA_Fail'] == 0) : ?>
                                         <div class="text-center">
                                             <button class="btn btn-primary animated-button" type="button" name="plan" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" onclick="confirmForm('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
                                         </div>

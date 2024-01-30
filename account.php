@@ -14,7 +14,7 @@ require('helper/server/checkplan.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
@@ -45,16 +45,16 @@ require('helper/server/checkplan.php');
                     <span><?php echo $_SESSION['name']; ?></span>
                     <span> เกรดเฉลี่ย : </span>
                     <span class="badge bg-secondary gpa">
-                        5 เทอม <?php echo $_SESSION['grade']; ?>
+                        5 เทอม <?php echo $_SESSION['GPAX']; ?>
                     </span>
                     <span class="badge bg-secondary gpa">
-                        คณิต <?php echo $_SESSION['math']; ?>
+                        คณิต <?php echo $_SESSION['GPA_MAT']; ?>
                     </span>
                     <span class="badge bg-secondary badge bg-secondary gpa">
-                        วิทย์ <?php echo $_SESSION['sci']; ?>
+                        วิทย์ <?php echo $_SESSION['GPA_SCI']; ?>
                     </span>
-                    <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
-                    <?php if ($_SESSION['zero'] == 1) : ?>
+                    <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['behavior_pass']; ?> คะแนน</span></div>
+                    <?php if ($_SESSION['GPA_Fail'] == 1) : ?>
                         <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-danger">มี</span></div>
                     <?php else : ?>
                         <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span></div>

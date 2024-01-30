@@ -28,7 +28,7 @@ if (isset($planCounts['การจัดการธุรกิจการค
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">

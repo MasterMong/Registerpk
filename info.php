@@ -21,7 +21,7 @@ if ($check_plan_result->execute()) {
 
         switch ($plan) {
             case 'วิทยาศาสตร์ – คณิตศาสตร์ : SMT':
-                $img_src = '<img class="img-fluid card-img-top2 info" src="helper/plan/sci.gif">';
+                $img_src = '<img class="img-fluid card-img-top2 info" src="helper/plan/GPA_SCI.gif">';
                 $detail_plan = '
                     <li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
                     <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
@@ -58,7 +58,7 @@ if ($check_plan_result->execute()) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,11 +80,11 @@ if ($check_plan_result->execute()) {
                     <div><span>รหัสนักเรียน : </span><?php echo $_SESSION['student_id']; ?></div>
                     <div><span>ชื่อ - สกุล : </span><span><?php echo $_SESSION['name']; ?></span><span> ห้อง : 3/</span><?php echo $_SESSION['room']; ?></div>
                     <span><?php echo $_SESSION['name']; ?></span>
-                    <span> เกรดเฉลี่ย : </span><span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['grade']; ?></span> 
-                    <span class="badge bg-secondary gpa">คณิต <?php echo $_SESSION['math']; ?></span> 
-                    <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['sci']; ?></span>
-                    <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['point']; ?> คะแนน</span></div>
-                    <?php if ($_SESSION['zero'] == 1): ?>
+                    <span> เกรดเฉลี่ย : </span><span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['GPAX']; ?></span> 
+                    <span class="badge bg-secondary gpa">คณิต <?php echo $_SESSION['GPA_MAT']; ?></span> 
+                    <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['GPA_SCI']; ?></span>
+                    <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['behavior_pass']; ?> คะแนน</span></div>
+                    <?php if ($_SESSION['GPA_Fail'] == 1): ?>
                         <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-danger">มี</span></div>
                     <?php else: ?>
                         <div><span>ติด 0 ร มส มผ : </span> <span class="badge bg-success">ไม่มี</span></div>
