@@ -60,9 +60,13 @@ $student = get_student($_SESSION['student_id'], $_SESSION['cid']);
                         คณิต
                         <?php echo $_SESSION['GPA_MAT']; ?>
                     </span>
-                    <span class="badge bg-secondary badge bg-secondary gpa">
+                    <span class="badge bg-secondary gpa">
                         วิทย์
                         <?php echo $_SESSION['GPA_SCI']; ?>
+                    </span>
+                    <span class="badge bg-secondary gpa">
+                        ภาษาอังกฤษ
+                        <?php echo $_SESSION['GPA_ENG']; ?>
                     </span>
                     <div><span>คะแนนความประพฤติ :
                             <?php ($student->behavior_pass == 1 ? print '<span class="badge bg-success">ผ่าน</span>' : print '<span class="badge bg-warning">ไม่ผ่าน</span>'); ?>
@@ -108,7 +112,7 @@ $student = get_student($_SESSION['student_id'], $_SESSION['cid']);
                     </form>
                 </div>
             <?php } else {
-                $sql = "SELECT * FROM types WHERE code = '$student->plan'";
+                $sql = "SELECT * FROM plans WHERE code = '$student->plan'";
                 $query = mysqli_query($conn, $sql);
                 $plan = mysqli_fetch_object($query);
                 ?>

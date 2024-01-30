@@ -26,6 +26,7 @@ if ($result->num_rows > 0) {
     $_SESSION['GPAX'] = $data->GPAX;
     $_SESSION['GPA_MAT'] = $data->GPA_MAT;
     $_SESSION['GPA_SCI'] = $data->GPA_SCI;
+    $_SESSION['GPA_ENG'] = $data->GPA_ENG;
     $_SESSION['GPA_Fail'] = $data->GPA_Fail;
     $_SESSION['name'] = $data->name;
     $_SESSION['plan'] = $data->plan;

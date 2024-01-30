@@ -14,9 +14,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table pk_quota66.types
-DROP TABLE IF EXISTS `types`;
-CREATE TABLE IF NOT EXISTS `types` (
+-- Dumping structure for table pk_quota66.plans
+DROP TABLE IF EXISTS `plans`;
+CREATE TABLE IF NOT EXISTS `plans` (
   `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `min_GPAX` float NOT NULL DEFAULT 0,
@@ -29,13 +29,13 @@ CREATE TABLE IF NOT EXISTS `types` (
   KEY `code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table pk_quota66.types: ~3 rows (approximately)
-DELETE FROM `types`;
-INSERT INTO `types` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `img_cover`) VALUES
+-- Dumping data for table pk_quota66.plans: ~3 rows (approximately)
+DELETE FROM `plans`;
+INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `img_cover`) VALUES
 	('eng', 'ภาษาอังกฤษ – คณิตศาสตร์', 0, 0, 0, 0, 1, 'eng.gif');
-INSERT INTO `types` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `img_cover`) VALUES
+INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `img_cover`) VALUES
 	('mou', 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL', 0, 0, 0, 0, 1, 'mou.gif');
-INSERT INTO `types` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `img_cover`) VALUES
+INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `img_cover`) VALUES
 	('sci', 'วิทยาศาสตร์ – คณิตศาสตร์', 2.75, 2.5, 2.5, 0, 1, 'sci.gif');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

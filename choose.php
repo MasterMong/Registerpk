@@ -16,14 +16,13 @@ $sql = "SELECT plan, COUNT(*) as total_students FROM students GROUP BY plan";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while ($type = $result->fetch_assoc()) {
-        $plan = $type["plan"];
-        $totalStudents = $type["total_students"];
-        $planCounts[$plan] = $totalStudents;
+    while ($plan = $result->fetch_assoc()) {
+        $totalStudents = $plan["total_students"];
+        $planCounts[$plan["plan"]] = $totalStudents;
     }
 }
-$totalA = 36;
-$totalB = 30;
+// $totalA = 36;
+// $totalB = 30;
 
 /* 
 $countA = $planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT'] ?? 0;
@@ -119,45 +118,45 @@ $student = get_student($_SESSION['student_id'], $_SESSION['cid']);
                 data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1000">
                 <h6 class="mb-5"><span>กรุณา<strong>เลือกแผนการเรียน</strong>ที่ต้องการสมัคร</span></h6>
                 <div class="row">
-                    <?php foreach (get_lists() as $key => $type) { ?>
+                    <?php foreach (get_lists() as $key => $plan) { ?>
                         <div class="col-lg-4 aos-init aos-animate" data-aos="zoom-in"
-                            data-aos-delay="<?php print($key + 1) * 300; ?>" data-aos-duration="1000" style="border-color:<?php print $type->color ?>">
+                            data-aos-delay="<?php print($key + 1) * 300; ?>" data-aos-duration="1000" style="border-color:<?php print $plan->color ?>">
                             <div class="card2 mb-5">
                                 <div>
-                                    <img class="card-img-top mb-3" src="helper/plan/<?php print $type->img_cover ?>">
+                                    <img class="card-img-top mb-3" src="helper/plan/<?php print $plan->img_cover ?>">
                                 </div>
                                 <div class="card-body ">
                                     <h5 class="card-title text-center">
-                                        <?php print $type->name; ?>
+                                        <?php print $plan->name; ?>
                                     </h5>
                                     <div class="text-center">
-                                        สมัครแล้ว <?php echo $planCounts[$type->code] ?? 0; ?> คน
+                                        สมัครแล้ว <?php echo $planCounts[$plan->code] ?? 0; ?> คน
                                     </div>
                                     <hr>
                                     <div>
                                         <p class="fw-bold text-danger">คุณสมบัติ</p>
                                         <ul>
-                                            <?php echo ($type->min_GPAX > 0 ? "<li>GPAX ตั้งแต่ " . $type->min_GPAX . "</li>" : ""); ?>
-                                            <?php echo ($type->min_GPA_SCI > 0 ? "<li>GPA วิชาคณิตศาสตร์ ตั้งแต่ " . $type->min_GPA_SCI . "</li>" : "") ?>
-                                            <?php echo ($type->min_GPA_MAT > 0 ? "<li>GPA วิชาคณิตศาสตร์ ตั้งแต่ " . $type->min_GPA_MAT . "</li>" : "") ?>
-                                            <?php echo ($type->allow_ungrade == 0 ? "<li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>" : ""); ?>
-                                            <?php echo ($type->allow_behavior_fail == 0 ? "<li>คะแนนความประพฤติผ่านเกณฑ์</li>" : ""); ?>
+                                            <?php echo ($plan->min_GPAX > 0 ? "<li>GPAX ตั้งแต่ " . $plan->min_GPAX . "</li>" : ""); ?>
+                                            <?php echo ($plan->min_GPA_SCI > 0 ? "<li>GPA วิชาคณิตศาสตร์ ตั้งแต่ " . $plan->min_GPA_SCI . "</li>" : "") ?>
+                                            <?php echo ($plan->min_GPA_MAT > 0 ? "<li>GPA วิชาคณิตศาสตร์ ตั้งแต่ " . $plan->min_GPA_MAT . "</li>" : "") ?>
+                                            <?php echo ($plan->allow_ungrade == 0 ? "<li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>" : ""); ?>
+                                            <?php echo ($plan->allow_behavior_fail == 0 ? "<li>คะแนนความประพฤติผ่านเกณฑ์</li>" : ""); ?>
                                         </ul>
                                     </div>
                                     <?php
                                     $pass = true;
-                                    if ($type->allow_not_meet_req == 0) {
+                                    if ($plan->allow_not_meet_req == 0) {
                                         // เช็กว่าเกรด 3 ตัวผ่านเงื่อนไขไหม
-                                        if ($student->GPAX < $type->min_GPAX or $student->GPA_SCI < $type->min_GPA_SCI or $student->GPA_MAT < $type->min_GPA_MAT) {
+                                        if ($student->GPAX < $plan->min_GPAX or $student->GPA_SCI < $plan->min_GPA_SCI or $student->GPA_MAT < $plan->min_GPA_MAT) {
                                             $pass = false;
                                         }
 
                                         // ถ้าไม่ให้นักเรียนที่ติด 0 ร มผ สมัคร และ นักเรียนคนนี้ติด
-                                        if ($type->allow_ungrade == 0 and $student->GPA_Fail == 1) {
+                                        if ($plan->allow_ungrade == 0 and $student->GPA_Fail == 1) {
                                             $pass = false;
                                         }
 
-                                        if ($type->allow_behavior_fail == 0 and $student->behavior_pass == 0) {
+                                        if ($plan->allow_behavior_fail == 0 and $student->behavior_pass == 0) {
                                             $pass = false;
                                         }
                                     }
@@ -167,7 +166,7 @@ $student = get_student($_SESSION['student_id'], $_SESSION['cid']);
                                     <?php } else { ?>
                                         <div class="text-center">
                                             <button class="btn btn-primary animated-button" type="button" name="plan"
-                                                onclick="confirmForm('<?php print $type->name; ?>', '<?php print $type->code; ?>')"><i
+                                                onclick="confirmForm('<?php print $plan->name; ?>', '<?php print $plan->code; ?>')"><i
                                                     class="far fa-edit"></i>&nbsp;สมัคร</button>
                                         </div>
                                     <?php } ?>

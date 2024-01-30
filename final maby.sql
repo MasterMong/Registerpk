@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.6.5-MariaDB - mariadb.org binary distribution
+-- Server version:               8.0.31 - MySQL Community Server - GPL
 -- Server OS:                    Win64
--- HeidiSQL Version:             12.6.0.6765
+-- HeidiSQL Version:             12.5.0.6677
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,30 +14,50 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Dumping structure for table student_register.plans
+DROP TABLE IF EXISTS `plans`;
+CREATE TABLE IF NOT EXISTS `plans` (
+  `code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `min_GPAX` float NOT NULL DEFAULT '0',
+  `min_GPA_MAT` float NOT NULL DEFAULT '0',
+  `min_GPA_SCI` float NOT NULL DEFAULT '0',
+  `allow_ungrade` tinyint(1) NOT NULL DEFAULT '0',
+  `allow_not_meet_req` tinyint(1) NOT NULL DEFAULT '0',
+  `allow_behavior_fail` tinyint(1) NOT NULL DEFAULT '0',
+  `img_cover` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default%20image.jpg',
+  `color` int DEFAULT NULL,
+  PRIMARY KEY (`code`) USING BTREE,
+  KEY `code` (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping database structure for student_register
-DROP DATABASE IF EXISTS `student_register`;
-CREATE DATABASE IF NOT EXISTS `student_register` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `student_register`;
+-- Dumping data for table student_register.plans: ~3 rows (approximately)
+DELETE FROM `plans`;
+INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `allow_behavior_fail`, `img_cover`, `color`) VALUES
+	('eng', 'ภาษาอังกฤษ – คณิตศาสตร์', 0, 0, 0, 0, 0, 0, 'eng.gif', 0);
+INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `allow_behavior_fail`, `img_cover`, `color`) VALUES
+	('mou', 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL', 0, 0, 0, 0, 0, 0, 'mou.gif', 0);
+INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `allow_behavior_fail`, `img_cover`, `color`) VALUES
+	('sci', 'วิทยาศาสตร์ – คณิตศาสตร์', 2.75, 2.5, 2.5, 0, 0, 0, 'sci.gif', 0);
 
 -- Dumping structure for table student_register.students
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `student_id` varchar(255) NOT NULL,
   `cid` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `room` varchar(255) NOT NULL,
   `student_number` varchar(255) NOT NULL,
   `plan` text NOT NULL,
-  `GPAX` int(11) NOT NULL,
-  `GPA_MAT` int(11) NOT NULL,
-  `GPA_SCI` int(11) NOT NULL,
-  `GPA_ENG` int(11) DEFAULT NULL,
-  `GPA_Fail` int(11) NOT NULL,
-  `behavior_pass` int(255) NOT NULL,
+  `GPAX` int NOT NULL,
+  `GPA_MAT` int NOT NULL,
+  `GPA_SCI` int NOT NULL,
+  `GPA_ENG` int DEFAULT NULL,
+  `GPA_Fail` int NOT NULL,
+  `behavior_pass` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=496 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=496 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table student_register.students: ~495 rows (approximately)
 DELETE FROM `students`;
@@ -46,11 +66,11 @@ INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_numb
 INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `GPAX`, `GPA_MAT`, `GPA_SCI`, `GPA_ENG`, `GPA_Fail`, `behavior_pass`) VALUES
 	(2, '37016', '1409600454161', 'นายจิรภัทร นามวงค์', '1', '2', '', 0, 0, 0, NULL, 0, 0);
 INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `GPAX`, `GPA_MAT`, `GPA_SCI`, `GPA_ENG`, `GPA_Fail`, `behavior_pass`) VALUES
-	(3, '37017', '1209000394666', 'นายจิรัฎฐ์ วราพลสวัสดิ์', '1', '3', '', 0, 0, 0, NULL, 0, 0);
+	(3, '37017', '1209000394666', 'นายจิรัฎฐ์ วราพลสวัสดิ์', '1', '3', 'sci', 4, 4, 4, NULL, 0, 1);
 INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `GPAX`, `GPA_MAT`, `GPA_SCI`, `GPA_ENG`, `GPA_Fail`, `behavior_pass`) VALUES
 	(4, '37018', '1118600046006', 'นายเจษฎา อำพันธ์เสน', '1', '4', '', 0, 0, 0, NULL, 0, 0);
 INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `GPAX`, `GPA_MAT`, `GPA_SCI`, `GPA_ENG`, `GPA_Fail`, `behavior_pass`) VALUES
-	(5, '37019', '1409903748617', 'นายณฐนนท พิขุนทด', '1', '5', '', 0, 0, 0, NULL, 0, 0);
+	(5, '37019', '1409903748617', 'นายณฐนนท พิขุนทด', '1', '5', '', 0, 0, 0, 5, 0, 0);
 INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `GPAX`, `GPA_MAT`, `GPA_SCI`, `GPA_ENG`, `GPA_Fail`, `behavior_pass`) VALUES
 	(6, '37020', '1368400086428', 'นายณัฐธวัตร เกาะแก้ง', '1', '6', '', 0, 0, 0, NULL, 0, 0);
 INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `GPAX`, `GPA_MAT`, `GPA_SCI`, `GPA_ENG`, `GPA_Fail`, `behavior_pass`) VALUES
@@ -1031,31 +1051,6 @@ INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_numb
 	(494, '37508', '1368400089397', 'นางสาวสุรีรัตน์ ไกรมาส', '12', '43', '', 0, 0, 0, NULL, 0, 0);
 INSERT INTO `students` (`id`, `student_id`, `cid`, `name`, `room`, `student_number`, `plan`, `GPAX`, `GPA_MAT`, `GPA_SCI`, `GPA_ENG`, `GPA_Fail`, `behavior_pass`) VALUES
 	(495, '37509', '1219901235711', 'นางสาวอิงอร เหล่าพรสวรรค์', '12', '44', '', 0, 0, 0, NULL, 0, 0);
-
--- Dumping structure for table student_register.plans
-DROP TABLE IF EXISTS `plans`;
-CREATE TABLE IF NOT EXISTS `plans` (
-  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `min_GPAX` float NOT NULL DEFAULT 0,
-  `min_GPA_MAT` float NOT NULL DEFAULT 0,
-  `min_GPA_SCI` float NOT NULL DEFAULT 0,
-  `allow_ungrade` tinyint(1) NOT NULL DEFAULT 0,
-  `allow_not_meet_req` tinyint(1) NOT NULL DEFAULT 0,
-  `allow_behavior_fail` tinyint(1) NOT NULL DEFAULT 0,
-  `img_cover` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default%20image.jpg',
-  PRIMARY KEY (`code`) USING BTREE,
-  KEY `code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table student_register.plans: ~3 rows (approximately)
-DELETE FROM `plans`;
-INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `allow_behavior_fail`, `img_cover`) VALUES
-	('eng', 'ภาษาอังกฤษ – คณิตศาสตร์', 0, 0, 0, 0, 0, 0, 'eng.gif');
-INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `allow_behavior_fail`, `img_cover`) VALUES
-	('mou', 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL', 0, 0, 0, 0, 0, 0, 'mou.gif');
-INSERT INTO `plans` (`code`, `name`, `min_GPAX`, `min_GPA_MAT`, `min_GPA_SCI`, `allow_ungrade`, `allow_not_meet_req`, `allow_behavior_fail`, `img_cover`) VALUES
-	('sci', 'วิทยาศาสตร์ – คณิตศาสตร์', 2.75, 2.5, 2.5, 0, 0, 0, 'sci.gif');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

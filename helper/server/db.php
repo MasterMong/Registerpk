@@ -13,13 +13,13 @@ mysqli_set_charset($conn, 'utf8');
 
 function get_lists()
 {
-    $types_sql = "SELECT * FROM types";
-    $types_query = mysqli_query($GLOBALS['conn'], $types_sql);
-    $types_data = [];
-    while ($type = mysqli_fetch_object($types_query)) {
-        array_push($types_data, $type);
+    $plans_sql = "SELECT * FROM plans";
+    $plans_query = mysqli_query($GLOBALS['conn'], $plans_sql);
+    $plans_data = [];
+    while ($plan = mysqli_fetch_object($plans_query)) {
+        array_push($plans_data, $plan);
     }
-    return $types_data;
+    return $plans_data;
 
 }
 function get_student($sid, $cid)
