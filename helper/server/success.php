@@ -7,31 +7,56 @@ if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['plan'])) {
-    $valid_plans = array("วิทยาศาสตร์ – คณิตศาสตร์ : SMT", "ภาษาอังกฤษ – คณิตศาสตร์", "การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL");
+    var_dump($_POST);
+    $plans = get_lists();
+    foreach ($plans as $key => $plan) {
+        $valid_plans[] = $plan->code;
+    }
     if (in_array($_POST['plan'], $valid_plans)) {
         $plan = $_POST['plan'];
-        $name = $_SESSION['name'];
+        $student_id = $_SESSION['student_id'];
 
-        $check_sql = "SELECT * FROM students WHERE name = '$name'";
-        $check_result = $conn->query($check_sql);
+        $student_sql = "SELECT * FROM students WHERE student_id = '$student_id'";
+        $student_result = $conn->query($student_sql);
 
-        if ($check_result->num_rows > 0) {
+        if ($student_result->num_rows > 0) {
+            $student = mysqli_fetch_object($student_result);
+            $sql_type = "SELECT * FROM types WHERE `code` = $plan";
+            $wish_type = mysqli_fetch_object(query($sql_type));
+
+            if ($wish_type->allow_not_meet_req == 0) {
+                if ($student->GPAX < $wish_type->min_GPAX or $student->GPA_MAT < $wish_type->min_GPA_MAT or $student->GPA_SCI < $wish_type->min_GPA_SCI) {
+                    http_response_code(403);
+                    die();
+                }
+                if ($wish_type->allow_ungrade == 0 and $student->ungrade == 1) {
+                    http_response_code(403);
+                    die();
+                }
+                if ($wish_type->allow_behavior_fail == 0 and $student->behavior_pass == 0) {
+                    http_response_code(403);
+                    die();
+                }
+            }
+
             $update_sql = "UPDATE students 
                            SET plan = '$plan'
-                           WHERE name = '$name'";
-            
+                           WHERE student_id = '$student_id'";
+
             if ($conn->query($update_sql) === TRUE) {
                 $_SESSION['plan'] = $plan;
-                header("location: ../../info.php");
+                header("location: /info.php");
                 exit();
             } else {
-                
+                http_response_code(403);
+                die('save error');
             }
         } else {
-            
+            http_response_code(403);
+            die('stu');
         }
     } else {
-        
+
         exit();
     }
 } else {

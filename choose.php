@@ -1,5 +1,5 @@
 <?php
-require('helper/server/db.php');
+require 'helper/server/db.php';
 
 if (!isset($_SESSION['student_id']) || $_SESSION['student_id'] != true) {
     header("Location: regis.php");
@@ -10,21 +10,22 @@ if (!(isset($_SESSION['user_agreed']) && $_SESSION['user_agreed'] === true)) {
     header('location: account.php');
 }
 
-require('helper/server/checkplan.php');
+require 'helper/server/checkplan.php';
 
 $sql = "SELECT plan, COUNT(*) as total_students FROM students GROUP BY plan";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $plan = $row["plan"];
-        $totalStudents = $row["total_students"];
+    while ($type = $result->fetch_assoc()) {
+        $plan = $type["plan"];
+        $totalStudents = $type["total_students"];
         $planCounts[$plan] = $totalStudents;
     }
-} 
-$totalA = 36; 
-$totalB = 30; 
+}
+$totalA = 36;
+$totalB = 30;
 
+/* 
 $countA = $planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT'] ?? 0;
 $countB = $planCounts['ภาษาอังกฤษ – คณิตศาสตร์'] ?? 0;
 
@@ -32,17 +33,19 @@ if ($countA != 0) {
     $percentageA = ($totalA / $countA) * 100;
     $roundedPercentageA = round($percentageA, 2);
 } else {
-    $roundedPercentageA = 0; 
+    $roundedPercentageA = 0;
 }
 
 if ($countB != 0) {
     $percentageB = ($totalB / $countB) * 100;
     $roundedPercentageB = round($percentageB, 2);
 } else {
-    $roundedPercentageB = 0; 
+    $roundedPercentageB = 0;
 }
 
+*/
 
+$student = get_student($_SESSION['student_id'], $_SESSION['cid']);
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +64,7 @@ if ($countB != 0) {
 </head>
 
 <body>
-    <?php require('helper/source/header.php'); ?>
+    <?php require 'helper/source/header.php'; ?>
     <main>
         <div class="container">
             <div class="card-background text-center mb-3" data-aos="zoom-in" data-aos-duration="500">
@@ -74,17 +77,31 @@ if ($countB != 0) {
                     </div>
                 </div>
             </div>
-            <div class="card-background" id="card--choose" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000">
+            <div class="card-background" id="card--choose" data-aos="zoom-in" data-aos-delay="150"
+                data-aos-duration="1000">
                 <h4>สมัครเรียนรอบโควตา</h4>
                 <div>
-                    <span><?php echo $_SESSION['name']; ?></span>
+                    <span>
+                        <?php echo $_SESSION['name']; ?>
+                    </span>
                     <span> เกรดเฉลี่ย : </span>
-                    <span class="badge bg-secondary gpa">5 เทอม <?php echo $_SESSION['GPAX']; ?></span> 
-                    <span class="badge bg-secondary gpa">คณิต <?php echo $_SESSION['GPA_MAT']; ?></span> 
-                    <span class="badge bg-secondary badge bg-secondary gpa">วิทย์ <?php echo $_SESSION['GPA_SCI']; ?></span>
+                    <span class="badge bg-secondary gpa">5 เทอม
+                        <?php echo $student->GPAX; ?>
+                    </span>
+                    <span class="badge bg-secondary gpa">คณิต
+                        <?php echo $student->GPA_MAT; ?>
+                    </span>
+                    <span class="badge bg-secondary badge bg-secondary gpa">วิทย์
+                        <?php echo $student->GPA_SCI; ?>
+                    </span>
+                    <span class="badge bg-secondary badge bg-secondary gpa">ภาษาอังกฤษ
+                        <?php echo $student->GPA_ENG; ?>
+                    </span>
                 </div>
-                <div><span>คะแนนความประพฤติ : </span><span class="badge bg-warning"><?php echo $_SESSION['behavior_pass']; ?> คะแนน</span></div>
-                <?php if (isset($_SESSION['student_id'])) : ?>
+                <div><span>คะแนนความประพฤติ : </span>
+                    <?php ($student->behavior_pass == 1 ? print '<span class="badge bg-success">ผ่าน</span>' : print '<span class="badge bg-warning">ไม่ผ่าน</span>'); ?>
+                </div>
+                <?php if (isset($_SESSION['student_id'])): ?>
                     <span>
                         <?php
                         if ($_SESSION['GPA_Fail'] == 1) {
@@ -94,142 +111,70 @@ if ($countB != 0) {
                         }
                         ?>
                     </span>
-                    
+
                 <?php endif; ?>
             </div>
             <hr>
-            <form method="post" action="helper/server/success.php" id="confirmationForm" class="card-background" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1000">
+            <form method="post" action="helper/server/success.php" id="confirmationForm" class="card-background"
+                data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1000">
                 <h6 class="mb-5"><span>กรุณา<strong>เลือกแผนการเรียน</strong>ที่ต้องการสมัคร</span></h6>
                 <div class="row">
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1000">
-                        <div class="card mb-5" class="choose-plan--choose">
-                            <div>
-                                <img class="card-img-top mb-3" src="helper/plan/GPA_SCI.gif">
-                            </div>
-                            <div class="card-body ">
-                                <h5 class="card-title text-center">วิทยาศาสตร์ – คณิตศาสตร์ : SMT</h5>
-                                <div class="text-center">
-                                    <p class="m-0">จำนวนการสมัครแล้ว <?php echo $planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT'] ?? 0; ?> คน</p>
-                                    
+                    <?php foreach (get_lists() as $key => $type) { ?>
+                        <div class="col-lg-4 aos-init aos-animate" data-aos="zoom-in"
+                            data-aos-delay="<?php print($key + 1) * 300; ?>" data-aos-duration="1000" style="border-color:<?php print $type->color ?>">
+                            <div class="card2 mb-5">
+                                <div>
+                                    <img class="card-img-top mb-3" src="helper/plan/<?php print $type->img_cover ?>">
+                                </div>
+                                <div class="card-body ">
+                                    <h5 class="card-title text-center">
+                                        <?php print $type->name; ?>
+                                    </h5>
+                                    <div class="text-center">
+                                        สมัครแล้ว <?php echo $planCounts[$type->code] ?? 0; ?> คน
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <p class="fw-bold text-danger">คุณสมบัติ</p>
+                                        <ul>
+                                            <?php echo ($type->min_GPAX > 0 ? "<li>GPAX ตั้งแต่ " . $type->min_GPAX . "</li>" : ""); ?>
+                                            <?php echo ($type->min_GPA_SCI > 0 ? "<li>GPA วิชาคณิตศาสตร์ ตั้งแต่ " . $type->min_GPA_SCI . "</li>" : "") ?>
+                                            <?php echo ($type->min_GPA_MAT > 0 ? "<li>GPA วิชาคณิตศาสตร์ ตั้งแต่ " . $type->min_GPA_MAT . "</li>" : "") ?>
+                                            <?php echo ($type->allow_ungrade == 0 ? "<li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>" : ""); ?>
+                                            <?php echo ($type->allow_behavior_fail == 0 ? "<li>คะแนนความประพฤติผ่านเกณฑ์</li>" : ""); ?>
+                                        </ul>
+                                    </div>
                                     <?php
-                                    if ($countA != 0) {
-                                        
-                                        if ($planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT'] > 36) { ?>
-                                        <p class="m-0">โอกาสสอบติด <?php echo $roundedPercentageA ?>% <i class="bi bi-flag-fill"></i></p>
-                                        <?php } ?>
-                                    <?php
+                                    $pass = true;
+                                    if ($type->allow_not_meet_req == 0) {
+                                        // เช็กว่าเกรด 3 ตัวผ่านเงื่อนไขไหม
+                                        if ($student->GPAX < $type->min_GPAX or $student->GPA_SCI < $type->min_GPA_SCI or $student->GPA_MAT < $type->min_GPA_MAT) {
+                                            $pass = false;
+                                        }
+
+                                        // ถ้าไม่ให้นักเรียนที่ติด 0 ร มผ สมัคร และ นักเรียนคนนี้ติด
+                                        if ($type->allow_ungrade == 0 and $student->GPA_Fail == 1) {
+                                            $pass = false;
+                                        }
+
+                                        if ($type->allow_behavior_fail == 0 and $student->behavior_pass == 0) {
+                                            $pass = false;
+                                        }
                                     }
                                     ?>
-                                
-                                </div>
-                                <hr>
-                                <div>
-                                <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['GPAX'] >= 2.75 && $_SESSION['GPA_MAT'] >= 2.5 && $_SESSION['GPA_SCI'] >= 2.5 && $_SESSION['GPA_Fail'] == 0) : ?>
-                                        <p class="fw-bold">คุณสมบัติ</p>
-                                    <?php else : ?>
-                                        <p class="fw-bold text-danger">คุณสมบัติ</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                                <ul>
-                                    <li>GPAX ตั้งแต่ 2.75</li>
-                                    <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5</li>
-                                    <li>GPA วิชาคณิตศาสตร์ ตั้งแต่ 2.5</li>
-                                    <li>ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
-                                </ul>
-                                </div>
-                                <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['GPAX'] >= 2.75 && $_SESSION['GPA_MAT'] >= 2.5 && $_SESSION['GPA_SCI'] >= 2.5 && $_SESSION['GPA_Fail'] == 0) : ?>
-                                        <div class="text-center">
-                                        <button class="btn btn-primary animated-button" type="button" name="plan" value="วิทยาศาสตร์ – คณิตศาสตร์ : SMT" onclick="confirmForm('วิทยาศาสตร์ – คณิตศาสตร์ : SMT')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
-                                        </div>
-                                    <?php else : ?>
+                                    <?php if (!$pass) { ?>
                                         <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
+                                    <?php } else { ?>
+                                        <div class="text-center">
+                                            <button class="btn btn-primary animated-button" type="button" name="plan"
+                                                onclick="confirmForm('<?php print $type->name; ?>', '<?php print $type->code; ?>')"><i
+                                                    class="far fa-edit"></i>&nbsp;สมัคร</button>
+                                        </div>
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1000">
-                        <div class="card2 mb-5" class="choose-plan--choose">
-                            <div>
-                                <img class="card-img-top mb-3" src="helper/plan/eng.gif">
-                            </div>
-                            <div class="card-body ">
-                                <h5 class="card-title text-center">ภาษาอังกฤษ – คณิตศาสตร์</h5>
-                                <div class="text-center">
-                                    <p class="m-0">จำนวนการสมัครแล้ว <?php echo $planCounts['ภาษาอังกฤษ – คณิตศาสตร์'] ?? 0; ?> คน</p>
-
-                                    <?php
-                                    if ($countB != 0) {
-                                        if ($planCounts['ภาษาอังกฤษ – คณิตศาสตร์'] > 30) { ?>
-                                            <p class="m-0">โอกาสสอบติด <?php echo $roundedPercentageB ?>% <i class="bi bi-flag-fill"></i></p>
-                                        <?php } ?>
-                                    <?php
-                                    }
-                                    ?>
-
-                                </div>
-                                <hr>
-                                <div>
-                                <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['GPAX'] >= 2.75) : ?>
-                                        <p class="fw-bold">คุณสมบัติ</p>
-                                    <?php else : ?>
-                                        <p class="fw-bold text-danger">คุณสมบัติ</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                                <ul>
-                                    <li class="li--choose">GPAX ตั้งแต่ 2.75</li>
-                                </ul>
-                                </div>
-                                <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['GPAX'] >= 2.75) : ?>
-                                        <div class="text-center">
-                                        <button class="btn btn-primary animated-button" type="button" name="plan" value="ภาษาอังกฤษ – คณิตศาสตร์" onclick="confirmForm('ภาษาอังกฤษ – คณิตศาสตร์')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
-                                        </div>
-                                    <?php else : ?>
-                                        <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="1200" data-aos-duration="1000">
-                        <div class="card3 mb-5" class="choose-plan--choose">
-                            <div>
-                                <img class="card-img-top mb-3" src="helper/plan/mou.gif">
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-title text-center">การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL</h6>
-                                <div class="text-center">
-                                    <p>จำนวนการสมัครแล้ว <?php echo $planCounts['การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL'] ?? 0; ?> คน</p>
-                                </div>
-                                <hr>
-                                <div>
-                                <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['GPA_Fail'] == 0) : ?>
-                                        <p class="fw-bold">คุณสมบัติ</p>
-                                    <?php else : ?>
-                                        <p class="fw-bold text-danger">คุณสมบัติ</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                                <ul>
-                                    <li class="li--choose">ต้องไม่มีผลการเรียน ติด 0 ร มส มผ</li>
-                                </ul>
-                                </div>
-                                <?php if (isset($_SESSION['student_id'])) : ?>
-                                    <?php if ($_SESSION['GPA_Fail'] == 0) : ?>
-                                        <div class="text-center">
-                                            <button class="btn btn-primary animated-button" type="button" name="plan" value="การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL" onclick="confirmForm('การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL')"><i class="far fa-edit"></i>&nbsp;สมัคร</button>
-                                        </div>
-                                    <?php else : ?>
-                                        <p class="text-center text-danger">สมัครไม่ได้ คุณสมบัติไม่ตรงตามเงื่อนไข</p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
+                    <?php } ?>
             </form>
         </div>
     </main>
@@ -239,7 +184,7 @@ if ($countB != 0) {
     <script>
         AOS.init();
     </script>
-    
+
 </body>
 
 </html>

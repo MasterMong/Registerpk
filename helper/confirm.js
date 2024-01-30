@@ -1,8 +1,8 @@
-function confirmForm(planValue) {
+function confirmForm(planValue, planCode) {
     const randomCode = Math.floor(100000 + Math.random() * 900000);
     Swal.fire({
         title: 'ยืนยันการสมัครเรียน',
-        text: `กรุณาพิมพ์เลข ${randomCode} เพื่อยืนยันการสมัครแผนการเรียน`,
+        text: `กรุณาพิมพ์เลข ${randomCode} เพื่อยืนยันการสมัครแผนการเรียน ${planValue}`,
         input: 'text',
         inputPlaceholder: `${randomCode}`,
         showCancelButton: true,
@@ -24,7 +24,7 @@ function confirmForm(planValue) {
                     var planInput = document.createElement("input");
                     planInput.type = "hidden";
                     planInput.name = "plan";
-                    planInput.value = planValue;
+                    planInput.value = planCode;
                     form.appendChild(planInput);
                     form.submit();
                     

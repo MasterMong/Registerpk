@@ -1,11 +1,14 @@
 <?php
 require('helper/server/db.php');
 
-$countA = 0; 
-$countB = 0;
-$countC = 0;
-$sql = "SELECT plan, COUNT(*) as total_students FROM students GROUP BY plan";
+$count = [];
+$sql = "SELECT plan, COUNT(*) as total_students FROM students WHERE plan != '' GROUP BY plan ";
 $result = $conn->query($sql);
+$reg_plan = get_lists();
+$reg_plan_code = [];
+foreach ($reg_plan as $key => $p) {
+    array_push($reg_plan_code, $p->code);
+}
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -15,17 +18,14 @@ if ($result->num_rows > 0) {
     }
 }
 
-if (isset($planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT'])) {
-    $countA = intval($planCounts['วิทยาศาสตร์ – คณิตศาสตร์ : SMT']);
+foreach ($reg_plan_code as $i => $plan) {
+    if (isset($planCounts[$plan])) {
+        $count[$plan] = intval($planCounts[$plan]);
+    } else {
+        $count[$plan] = 0;
+    }
 }
 
-if (isset($planCounts['ภาษาอังกฤษ – คณิตศาสตร์'])) {
-    $countB = intval($planCounts['ภาษาอังกฤษ – คณิตศาสตร์']);
-}
-
-if (isset($planCounts['การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL'])) {
-    $countC = intval($planCounts['การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL']);
-}
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -47,9 +47,12 @@ if (isset($planCounts['การจัดการธุรกิจการค
     <?php require 'helper/source/header.php' ?>
     <main>
         <div class="container">
-            <p class="card-background" id="countsmt">จำนวนคนสมัครวิทยาศาสตร์ – คณิตศาสตร์ <?php echo $countA ?> คน</p>
-            <p class="card-background" id="counteng">จำนวนคนสมัครภาษาอังกฤษ – คณิตศาสตร์ <?php echo $countB ?> คน</p>
-            <p class="card-background" id="countmou">จำนวนคนสมัครการจัดการธุรกิจการค้าสมัยใหม่ <?php echo $countC ?> คน</p>
+            <?php foreach ($reg_plan as $key => $p) { ?>
+                <p class="card-background" id="countsmt" style="background-color:<?php print $p->color ?>">
+                    <?php echo $p->name ?>
+                    <?php echo $count[$p->code] ?> คน
+                </p>
+            <?php } ?>
             <div class="card-background">
                 <canvas id="myChart"></canvas>
             </div>
@@ -59,38 +62,43 @@ if (isset($planCounts['การจัดการธุรกิจการค
     <?php require 'helper/source/footer.php' ?>
     <?php require 'helper/source/script.php' ?>
     <script>
-        AOS.init();
-        var planData = <?php echo json_encode($planCounts); ?>;
-        var labels = Object.keys(planData);
-        var values = Object.values(planData);
+        // AOS.init();
+        // var planData = <?php echo json_encode($planCounts); ?>;
+        // var labels = Object.keys(planData);
+        // var values = Object.values(planData);
 
-        var countAData = <?php echo $countA ?>; 
-        var countBData = <?php echo $countB ?>;
-        var countCData = <?php echo $countC ?>;
-
-        var countAInt = parseInt(countAData);
-        var countBInt = parseInt(countBData);
-        var countCInt = parseInt(countCData);
-    
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['วิทยาศาสตร์ – คณิตศาสตร์ : SMT', 'ภาษาอังกฤษ – คณิตศาสตร์', 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL'],
+                labels: [
+                    <?php foreach ($reg_plan as $key => $p) {
+                        print "'$p->name', ";
+                    } ?>
+                ],
                 datasets: [{
                     label: 'จำนวนคนที่สมัครตามแผน',
-                    data: [Math.floor(countAInt), Math.floor(countBInt), Math.floor(countCInt)],
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgb(81, 226, 144, 0.2)'],
-                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgb(81, 226, 144, 1)'],
+                    data: [
+                        <?php foreach ($reg_plan as $key => $p) {
+                            print "Math.floor(" . $count[$p->code] . "), ";
+                        } ?>
+                    ],
+                    backgroundColor: [
+                        <?php foreach ($reg_plan as $key => $p) {
+                            print "'$p->color', ";
+                        } ?>
+                    ],
+                    // backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgb(81, 226, 144, 0.2)'],
+                    // borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgb(81, 226, 144, 1)'],
                     borderWidth: 1
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                // scales: {
+                //     y: {
+                //         // beginAtZero: true
+                //     }
+                // }
             },
         });
     </script>

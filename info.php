@@ -20,7 +20,7 @@ if ($check_plan_result->execute()) {
         $check_plan_result->fetch();
 
         switch ($plan) {
-            case 'วิทยาศาสตร์ – คณิตศาสตร์ : SMT':
+            case 'sci':
                 $img_src = '<img class="img-fluid card-img-top2 info" src="helper/plan/GPA_SCI.gif">';
                 $detail_plan = '
                     <li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>
@@ -30,12 +30,12 @@ if ($check_plan_result->execute()) {
                 ';
                 break;
 
-            case 'ภาษาอังกฤษ – คณิตศาสตร์':
+            case 'eng':
                 $img_src = '<img class="img-fluid card-img-top2 info2" src="helper/plan/eng.gif">';
                 $detail_plan = '<li>GPAX ตั้งแต่ 2.75 <span class="badge bg-success">ผ่านเกณฑ์</span> </li>';
                 break;
 
-            case 'การจัดการธุรกิจการค้าสมัยใหม่ : MOU CP ALL':
+            case 'mou':
                 $img_src = '<img class="img-fluid card-img-top2 info3" src="helper/plan/mou.gif">';
                 $detail_plan = '<li>ผลการเรียน ติด 0 ร มส มผ <span class="badge bg-success">ไม่มี</span> </li>';
                 break;
